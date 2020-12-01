@@ -1,14 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import CommentArea from "./CommentArea";
+
+const rootTag = document.getElementById('comment-block');
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <CommentArea
+        lang={rootTag.getAttribute('lang')}
+        userId={rootTag.getAttribute('data-user-id')}
+        docId={rootTag.getAttribute('data-doc-id')} />
   </React.StrictMode>,
-  document.getElementById('root')
+    rootTag
 );
 
 // If you want to start measuring performance in your app, pass a function

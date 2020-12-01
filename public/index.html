@@ -1,43 +1,141 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
+<html id="html" lang="oz">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Ўзбекистон Республикаси Норматив Ҳуқуқий Ҳужжатлар муҳокамаси портали</title>
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>React App</title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+    <link rel="stylesheet" href="%PUBLIC_URL%/css/bootstrap.min.css">
+    <link rel="stylesheet" href="%PUBLIC_URL%/css/jquery-ui.css">
+    <link rel="stylesheet" href="%PUBLIC_URL%/css/style.css">
+    <link rel="stylesheet" href="%PUBLIC_URL%/css/chosen.css">
+    <link rel="stylesheet" href="%PUBLIC_URL%/css/sidebar.css">
+    <link rel="stylesheet" href="%PUBLIC_URL%/css/media.css">
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+</head>
+<body>
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-  </body>
+<div class="wrapper">
+
+    <div id="content" class="pad_top">
+
+        <section class="header header_in">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid header_has_width">
+
+                    <ul class="header_list">
+                        <li class="col-md-2">
+                            <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn btn_info">
+                                <img src="img/menu_img.png" alt="" />
+                            </button>
+                        </li>
+                        <li class="col-md-8">
+                            <a href="#" class="title_name">Ўзбекистон Республикаси Норматив Ҳуқуқий Ҳужжатлар муҳокамаси портали</a>
+                        </li>
+                        <li class="col-md-2">
+                            <a href="#"><img src="img/reg_link_img.png" alt="" />regulation.gov.uz</a>
+                        </li>
+                    </ul>
+
+                </div>
+            </nav>
+        </section>
+
+        <div class="container has_width">
+            <section class="table_block">
+                <div class="table-responsive">
+                    <ul class="share_list">
+                        <li><a href="#"><img src="img/twitter.png" alt="" /></a></li>
+                        <li><a href="#"><img src="img/telegram.png" alt="" /></a></li>
+                        <li><a href="#"><img src="img/facebook.png" alt="" /></a></li>
+                        <li><a href="#"><img src="img/selected.png" alt="" /></a></li>
+                    </ul>
+                    <table class="table">
+                        <tbody>
+                        <tr>
+                            <td>ID</td>
+                            <td>Муаллиф</td>
+                            <td>Мухокамага чиқариш санаси</td>
+                            <td>Якунлаш санаси</td>
+                            <td>Таклифлар сони</td>
+                            <td rowspan="2">
+                                <span><a href="#" data-toggle="modal" data-target="#myModal3"><img src="img/ic_11.png" alt="" />Антикоррупционная экспертиза</a><i class="">100</i></span>
+                                <span><a href="#" data-toggle="modal" data-target="#myModal2"><img src="img/ic_12.png" alt="" />Гендерная <br>экспертиза</a><i class="">72</i></span>
+                                <span><a href="#" data-toggle="modal" data-target="#myModal"><img src="img/ic_13.png" alt="" />Опросник</a><i class="">179</i></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>20688</td>
+                            <td id="authority-title">Ўзбекистон Республикаси Олий ва ўрта махсус таълим вазирлиги</td>
+                            <td>10/08/2020</td>
+                            <td>10/08/2020</td>
+                            <td>0</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            <section>
+                <div class="tab_panel">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Русский</a></li>
+                        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Узбекский</a></li>
+                        <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">O'zbekcha</a></li>
+                        <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Аналитические материалы</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="home">
+                            <div class="tab_content_in">
+                                <a href="#" class="save_btn"><img src="img/save.png" alt="" /></a>
+                                <p><strong><span class="tab_content_in_title"><i class="popover_style" data-placement="top" data-toggle="popover" data-content="нодавлат таълим ташкилотлари ва давлат олий таълим муассасаларининг таълим фаолиятини лицензиялаш ҳамда улар томонидан лицензия талаблари ва шартларига риоя этилишини назорат қилиш">Ўзбекистон</i> Республикаси президенти қарори</span></strong></p>
+                                <span class="tab_content_in_text">Ўзбекистон Республикаси Вазирлар Маҳкамаси ҳузуридаги Таълим сифатини назорат қилиш давлат инспекцияси фаолиятини такомиллаштириш тўғрисида</span>
+                                <span class="text_id">ID-20869</span>
+                                <p>Ўзбекистон Республикаси Президентининг 2020 йил “____” _______ даги “Таълим сифатини назорат қилиш тизимини янада такомиллаштириш тўғрисида”ги ПФ–_______-сон Фармонига мувофиқ:</p>
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="profile">222222222</div>
+                        <div role="tabpanel" class="tab-pane" id="messages">33333333</div>
+                        <div role="tabpanel" class="tab-pane" id="settings">3333333333333333</div>
+                    </div>
+                </div>
+                <span class="number_views"><i class="glyphicon glyphicon-eye-open"></i>72</span>
+            </section>
+            <section id="comment-block" class="comment_block" data-doc-id="14184" lang="oz" data-user-id="5328">
+
+            </section>
+        </div>
+
+
+    </div>
+</div>
+
+<div class="overlay"></div>
+
+<script src="%PUBLIC_URL%/js/jquery.min.js"></script>
+<script src="%PUBLIC_URL%/js/bootstrap.min.js"></script>
+<script src="%PUBLIC_URL%/js/chosen.jquery.min.js"></script>
+<script src="%PUBLIC_URL%/js/jquery-ui.js"></script>
+<script src="%PUBLIC_URL%/js/jquery.nicescroll.min.js"></script>
+<script src="%PUBLIC_URL%/js/jquery.cookie.js"></script>
+<script src="%PUBLIC_URL%/js/specialView.js"> </script>
+
+<script type="text/javascript">
+
+
+    /*$(document).ready(function () {
+
+        $("#scroll_vertical").niceScroll({
+            cursorcolor: "#CDCDCD!important",
+            cursorwidth: "5",
+            cursoropacitymin: 1,
+            scrollTop: 0,
+            cursorborder: "none",
+            background: "#E1E1E1",
+            cursorborderradius: 5
+        });
+
+    });*/
+</script>
+
+</body>
 </html>

@@ -1,0 +1,460 @@
+/**
+ * Added by Abrorxon Obidov
+ * on 2020-09-30 23:13:00 GMT +5
+ */
+
+
+/** Style for Advanced search */
+
+.rounded_select2 .select2-container--krajee .select2-selection {
+    border-radius: 20px;
+    font-size: 16px;
+    border: 1px solid #aeaeae;
+}
+
+.rounded_select2 .select2-container--krajee .select2-selection--single {
+    height: 41px;
+    padding: 10px 24px 6px 12px;
+}
+
+.rounded_select2 .select2-selection.select2-selection--multiple {
+    height: 41px;
+    padding-top: 5px;
+    overflow: hidden;
+}
+
+.rounded_select2 .select2-container--krajee .select2-selection--single .select2-selection__arrow {
+    border: none;
+    top: 5px;
+    right: 9px;
+}
+
+.rounded_select2 .select2-container--krajee .select2-selection--single .select2-selection__placeholder {
+    color: #b1b1b1;
+}
+
+.rounded_select2 .select2-container--krajee .select2-selection__clear {
+    top: 8px;
+}
+
+.rounded_select2 td .select2 {
+    text-align: center;
+}
+
+.rounded_select2 td input {
+    border: 1px solid #aeaeae;
+    border-radius: 20px;
+    font-size: 16px;
+    color: #b4b4b4;
+    line-height: 1.2;
+    padding: 10px 15px;
+    margin-top: 5px;
+    height: auto;
+    text-align: center;
+}
+
+.adv_search form .form-group input {
+    margin-top: 0;
+}
+
+.adv_search form .input-group-addon {
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border: 1px solid #aeaeae;
+    border-left: 0;
+}
+
+.adv_search form .field-globalsearch-publication_at_range input,
+.adv_search form .field-globalsearch-publication_at input {
+    border-right: 0;
+}
+
+.adv_search form .field-globalsearch-publication_at_range .glyphicon-calendar,
+.adv_search form .field-globalsearch-publication_at .glyphicon-calendar {
+    color: #858585;
+}
+
+
+.correspondence {
+    font-family: "Montserrat-Medium";
+}
+
+.correspondence .rounded_select2 .select2-container--krajee .select2-selection {
+    font-size: 14px;
+}
+
+.correspondence .rounded_select2 .select2-container--krajee .select2-selection--single {
+    height: 34px;
+    padding: 5px 24px 6px 12px;
+}
+
+.correspondence .rounded_select2 .select2-container--krajee .select2-selection--single .select2-selection__arrow {
+    top: 1px;
+}
+
+.correspondence .rounded_select2 .select2-container--krajee .select2-selection__clear {
+    top: 4px;
+}
+
+.correspondence .rounded_select2 .select2-container--krajee .select2-selection--single {
+    height: 34px;
+}
+
+.correspondence .blue_link {
+    margin-top: 25px;
+    float: right;
+    height: 34px;
+}
+
+.correspondence .blue_link.disabled {
+    background-color: #686868;
+    cursor: not-allowed;
+}
+
+/** Vote style*/
+
+.questionnaire .modal-body .vote-form.has-error input[type='radio']:before {
+    border-color: #FF0000;
+}
+
+.vote-form.has-error textarea {
+    border-color: #FF0000;
+}
+
+.vote-form.has-error .custom-file-upload .glyphicon.glyphicon-paperclip {
+    color: #FF0000;
+}
+
+.popover {
+    max-width: 600px;
+    text-indent: 0;
+}
+
+/** loader style*/
+
+.loader-spinner {
+    animation: spin 0.8s linear infinite;
+}
+
+.comment-loader {
+    position: absolute;
+    top: 7px;
+    right: 9px;
+}
+
+.favourite-loader {
+    font-size: 24px;
+    color: #fff;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+/** Analytic materials styles */
+
+page {
+    background: white;
+    display: block;
+    margin: 20px auto 0.5cm auto;
+    -webkit-box-shadow: 0 0 24px -4px rgba(195, 195, 195, 0.75);
+    -moz-box-shadow: 0 0 24px -4px rgba(195, 195, 195, 0.75);
+    box-shadow: 0 0 24px -4px rgba(195, 195, 195, 0.75);
+}
+
+page[size="A4"] {
+    width: 23cm;
+    min-height: 31.7cm;
+    padding: 2cm 0;
+}
+
+page[size="A2"] {
+    width: 31.7cm;
+    min-height: 23cm;
+    padding: 2cm 0;
+}
+
+.left_right_padding {
+    padding: 0 1.5cm 0 3cm !important;
+}
+
+
+/** Document/index mini filter styles */
+
+#mini-search-form .select2-container--krajee .select2-selection {
+    -webkit-box-shadow: 0 0 #000000;
+    box-shadow: 0 0 #000000;
+    border: 0;
+    border-radius: 20px;
+    font-size: 16px;
+    text-align: center;
+    padding-right: 50px;
+}
+
+#mini-search-form .select2-selection__rendered {
+    color: #000000;
+    font-family: "Montserrat-Medium";
+}
+
+#mini-search-form .select2-selection__arrow {
+    border: 0;
+}
+
+#mini-search-form .select2-selection__arrow b {
+    color: #000000;
+}
+
+.anonymous-loader {
+    color: #003d97;
+    position: absolute;
+    left: 280px;
+    top: 25px;
+    font-size: 21px;
+}
+
+
+/*Abdulazizhuja*/
+.document_table .modal-body form .form-group {
+    width: 100%;
+    margin: 0;
+}
+
+.document_table .email_chosen form {
+    text-align: left;
+}
+
+.document_table .email_chosen form .form-group {
+    margin: 0 25px 0 0;
+}
+
+.email_chosen .form-group:first-child {
+    width: 27.3%;
+}
+
+.email_chosen form .form-group:nth-of-type(1) {
+    width: 34%;
+}
+
+.email_chosen form .form-group:nth-of-type(2) {
+    width: 25%;
+}
+
+.email_chosen form .form-group:last-child {
+    width: 34%;
+    margin: 15px 0 15px 0;
+}
+
+.email_chosen form .form-group .select_box .chosen-container-multi .chosen-choices {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    padding: 10px 15px;
+    border-radius: 25px;
+    border: none;
+    outline: none;
+    -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16);
+    -moz-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16);
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.17);
+    font-family: "Montserrat-Medium";
+    font-size: 14px;
+    color: #000;
+    line-height: 1.3;
+    text-align: center;
+}
+
+.email_chosen form .form-group .select_box .chosen-container-multi .chosen-choices input {
+    align-items: center;
+    font-family: "Montserrat-Medium";
+    font-size: 14px;
+    color: #000;
+    line-height: 1.3;
+    text-align: center;
+}
+
+.email_chosen form .form-group .select_box button {
+    position: relative;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+    height: 50px;
+    padding: 10px 15px;
+    border-radius: 25px;
+    border: none;
+    outline: none;
+    -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16);
+    -moz-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16);
+    /* box-shadow: 0 2px 5px 0 rgba(255, 255, 255, 0.17); */
+    font-family: "Montserrat-Medium";
+    font-size: 14px;
+    color: #000;
+    line-height: 1.3;
+    text-align: center;
+}
+
+.btn_success {
+    color: #fff;
+}
+
+.form_box.form_user_box .form-group:nth-child(odd) {
+    padding: 0;
+}
+
+.tech_supp_box_margin {
+    margin: -30px -35px 0 -9px;
+    overflow: hidden;
+}
+
+.s2-togall-button, .s2-togall-select {
+    display: none;
+}
+
+#voteAnswerModal .modal-body .grid-view {
+    padding-left: 0;
+}
+
+/** site/statistics styles*/
+
+#stat-by-doc-type table td {
+    padding: 0 !important;
+    color: #1642ab;
+}
+
+#stat-by-doc-type table td > a {
+    display: table;
+    position: relative;
+    height: 60px;
+    width: 100%;
+    text-decoration: none;
+    color: inherit;
+}
+
+#stat-by-doc-type table td > a:hover {
+    color: inherit;
+}
+
+#stat-by-doc-type table td > a > span {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    padding: 0 12px;
+}
+
+#stat-by-doc-type table td > a:hover > span {
+    background-color: #afe3ff;
+}
+
+#comment-form .comment-file-preview .form-control {
+    border-radius: 20px 0 0 20px;
+}
+
+#comment-form .comment-file-preview .btn-file {
+    border-radius: 0 20px 20px 0 !important;
+}
+
+#comment-form .comment-file-preview .bg-blue {
+    background-color: #05439d;
+    border-color: #05439d;
+}
+
+.dc-f {
+    color: #05439d;
+    float: right;
+    margin: 15px 61px 0 0;
+}
+
+/** Browser scrollbar*/
+
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+
+::-webkit-scrollbar:vertical {
+    width: 11px
+}
+
+::-webkit-scrollbar:horizontal {
+    width: 11px
+}
+
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+    background-color: #3da846;
+}
+
+
+.inner_form_box .select2-container--krajee .select2-selection {
+    border-radius: 20px;
+    font-size: 16px;
+}
+
+.inner_form_box .select_box .form-control {
+    border-radius: 25px;
+    font-size: 16px;
+    padding: 8px 35px 8px 20px;
+    border: 1px solid #dbdbdb;
+    display: flex;
+    align-items: center;
+    min-height: 50px;
+}
+
+.inner_form_box .select2-container--krajee .select2-selection--single {
+    padding: 12px 35px 12px 20px;
+    border: 1px solid #dbdbdb;
+    display: flex;
+    align-items: center;
+    min-height: 50px;
+    border-radius: 25px;
+}
+
+.inner_form_box .select2-container--krajee .select2-selection--single .select2-selection__arrow {
+    border: none;
+    top: 50%;
+    right: 10px;
+    height: auto;
+    transform: translateY(-50%);
+}
+
+.inner_form_box .select2-container--krajee .select2-selection--single .select2-selection__clear {
+    right: 32px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* add sorting icons to gridView sort links */
+a.asc:after, a.desc:after {
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    padding-left: 5px;
+}
+
+a.asc:after {
+    content: "\e151";
+}
+
+a.desc:after {
+    content: "\e152";
+}
+
+.document_table table thead tr th.message-icon a {
+    border-bottom: 0;
+}
+
+.document_table table thead tr th.message-icon a:hover {
+    border-bottom: 1px solid #000;
+}
