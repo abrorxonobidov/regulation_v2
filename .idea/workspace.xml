@@ -1,193 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dbb179d7-ebff-490c-82a4-c8f7101ddc36" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/css/additional.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/css/bootstrap.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/css/chosen.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/css/font/summernote.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/css/font/summernote.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/css/font/summernote.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/css/jquery-ui.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/css/media.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/css/sidebar.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/css/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/css/summernote.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/fonts/Montserrat-Bold.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/fonts/Montserrat-Light.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/fonts/Montserrat-Medium.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/fonts/Montserrat-Regular.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/fonts/Montserrat-SemiBold.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/fonts/Philosopher-Bold.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/fonts/Roboto-Medium.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/fonts/Roboto-Regular.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/fonts/glyphicons-halflings-regular.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/fonts/glyphicons-halflings-regular.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/fonts/glyphicons-halflings-regular.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/fonts/glyphicons-halflings-regular.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/fonts/glyphicons-halflings-regular.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/404.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/active_users.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/align_right.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/captcha.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/chart_img.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/check77.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/checked77.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/chosen-sprite.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/chosen-sprite2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/comment.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/comment2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/facebook.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/faq_icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/flag.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/gerb.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/ic_1.1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/ic_1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/ic_10.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/ic_11.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/ic_12.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/ic_13.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/ic_2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/ic_3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/ic_4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/ic_5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/ic_6.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/ic_7.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/ic_8.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/ic_9.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/icon_1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/icon_10.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/icon_11.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/icon_12.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/icon_13.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/icon_14.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/icon_15.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/icon_16.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/icon_17.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/icon_18.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/icon_19.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/icon_2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/icon_20.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/icon_3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/icon_4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/icon_5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/icon_6.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/icon_7.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/icon_8.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/icon_9.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/icon_in_11.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/icon_in_12.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/icon_in_13.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/icon_in_14.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/icon_in_5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/icon_in_6.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/like.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/loading.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/logo192.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/logo512.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/menu_img.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/no.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/rating.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/reg_link_img.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/reload.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/rss.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/s1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/s2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/s3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/s4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/save.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/save_icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/save_icon2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/scrollup.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/scrollup_hover.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/select.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/selected.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/social/facebook.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/social/google.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/social/mailru.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/social/odnoklassniki.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/social/oneId.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/social/twitter.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/social/vk.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/social/yandex.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/social_icon_1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/social_icon_2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/social_icon_3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/social_icon_4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/social_icon_5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/spheres/bank.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/spheres/business.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/spheres/citizenship.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/spheres/civil_law.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/spheres/complex.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/spheres/constitutional_order.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/spheres/customs.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/spheres/defense.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/spheres/education.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/spheres/environment.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/spheres/family.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/spheres/healthcare.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/spheres/housing.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/spheres/info_tech.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/spheres/international.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/spheres/justice.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/spheres/labor.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/spheres/legislation.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/spheres/other.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/spheres/prosecutor.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/spheres/security.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/spheres/services.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/spheres/social.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/spheres/tax_fine.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/spheres/transport.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/tarozi.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/tech_icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/telegram.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/tick.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/twitter.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/type_1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/type_2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/type_3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/type_4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/uzinfocom.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/yes.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/Эллипс 39.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/img/Эллипс 40.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/index_old.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/additional.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/bootstrap.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/chart.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/chosen.jquery.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/circles.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/comment.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/jquery-ui.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/jquery.cookie.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/jquery.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/jquery.nicescroll.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/main.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/orphus.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/specialView.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/summernote.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/terms.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/CommentArea.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/SingleComments.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/WordList.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/comments.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/img/like.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/react-tests.iml" beforeDir="false" />
+    <list default="true" id="dbb179d7-ebff-490c-82a4-c8f7101ddc36" name="Default Changelist" comment="step">
+      <change afterPath="$PROJECT_DIR$/src/params.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/singleComment.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/logo192.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/logo512.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.test.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CommentArea.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/commentArea.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SingleComments.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/img/svgList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/WordList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/wordList.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/logo.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/img/logo.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/setupTests.js" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -215,71 +39,88 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/index.html">
+        <entry file="file://$PROJECT_DIR$/src/commentArea.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="616">
-              <caret line="68" column="51" selection-start-line="68" selection-start-column="51" selection-end-line="68" selection-end-column="51" />
+            <state relative-caret-position="132">
+              <caret line="46" column="16" selection-start-line="46" selection-start-column="16" selection-end-line="46" selection-end-column="16" />
+              <folding>
+                <element signature="e#57#94#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/CommentArea.js">
+        <entry file="file://$PROJECT_DIR$/src/img/svgList.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="20" selection-start-line="20" selection-end-line="20" />
+            <state relative-caret-position="487">
+              <caret line="24" selection-start-line="24" selection-end-line="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/params.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="66">
+              <caret line="6" column="11" selection-start-line="6" selection-start-column="11" selection-end-line="6" selection-end-column="11" />
               <folding>
-                <element signature="e#0#37#0" expanded="true" />
+                <element signature="e#0#80#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/SingleComments.js">
+        <entry file="file://$PROJECT_DIR$/public/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-107">
-              <caret line="109" lean-forward="true" selection-start-line="109" selection-end-line="109" />
+            <state relative-caret-position="333">
+              <caret line="90" column="21" selection-start-line="90" selection-start-column="21" selection-end-line="90" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/singleComment.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2046">
+              <caret line="130" column="68" lean-forward="true" selection-start-line="130" selection-start-column="68" selection-end-line="130" selection-end-column="68" />
               <folding>
-                <element signature="e#0#39#0" expanded="true" />
+                <element signature="n#RegularCommentBody#0" />
+                <element signature="n#!!block;n#render#0;n#RegularCommentBody#0" />
+                <element signature="n#HiddenCommentBody#0" />
+                <element signature="n#!!block;n#render#0;n#HiddenCommentBody#0" />
+                <element signature="e#1998#2504#0" />
+                <element signature="e#2217#2318#0" />
+                <element signature="e#2335#2485#0" />
+                <element signature="n#AcceptedCommentBody#0" />
+                <element signature="n#!!block;n#render#0;n#AcceptedCommentBody#0" />
+                <element signature="e#2701#2917#0" />
+                <element signature="e#3243#3424#0" />
+                <element signature="e#3784#3953#0" />
+                <element signature="e#4016#4397#0" />
+                <element signature="e#4043#4160#0" />
+                <element signature="e#4185#4373#0" />
+                <element signature="n#LikedBtn#0" />
+                <element signature="n#!!block;n#render#0;n#LikedBtn#0" />
+                <element signature="n#LikeBtn#0" />
+                <element signature="n#!!block;n#render#0;n#LikeBtn#0" />
+                <element signature="e#4835#5075#0" />
+                <element signature="e#4906#5106#0" />
+                <element signature="n#AddCommentBtn#0" />
+                <element signature="n#!!block;n#render#0;n#AddCommentBtn#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/comments.js">
+        <entry file="file://$PROJECT_DIR$/src/wordList.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="18" column="21" selection-start-line="18" selection-start-column="9" selection-end-line="18" selection-end-column="21" />
+            <state relative-caret-position="198">
+              <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
               <folding>
-                <element signature="e#523#5851#0" />
-                <element signature="e#8697#8945#0" />
-                <element signature="e#9437#9685#0" />
-                <element signature="e#3#9#0" expanded="true" />
-                <element signature="e#35#41#0" expanded="true" />
-                <element signature="e#48#54#0" expanded="true" />
-                <element signature="e#3#9#0" expanded="true" />
-                <element signature="e#66#72#0" expanded="true" />
-                <element signature="e#164#168#0" expanded="true" />
-                <element signature="e#187#191#0" expanded="true" />
-                <element signature="e#55#61#0" expanded="true" />
-                <element signature="e#81#87#0" expanded="true" />
-                <element signature="e#34#40#0" expanded="true" />
-                <element signature="e#56#62#0" expanded="true" />
-                <element signature="e#62#68#0" expanded="true" />
-                <element signature="e#90#96#0" expanded="true" />
-                <element signature="e#96#102#0" expanded="true" />
-                <element signature="e#3#7#0" expanded="true" />
-                <element signature="e#26#30#0" expanded="true" />
-                <element signature="e#20#26#0" expanded="true" />
-                <element signature="e#33#39#0" expanded="true" />
-                <element signature="e#59#65#1" expanded="true" />
-                <element signature="e#3#7#0" expanded="true" />
-                <element signature="e#12#16#0" expanded="true" />
-                <element signature="e#3#7#0" expanded="true" />
-                <element signature="e#13#17#0" expanded="true" />
-                <element signature="e#15#21#0" expanded="true" />
+                <element signature="e#17#1570#0" />
               </folding>
             </state>
           </provider>
@@ -288,20 +129,12 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="9" column="9" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="9" />
+            <state relative-caret-position="132">
+              <caret line="9" column="14" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="14" />
               <folding>
-                <element signature="e#0#26#0" expanded="true" />
+                <element signature="n#!!doc" />
+                <element signature="e#463#537#0" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/WordList.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="290">
-              <caret line="31" column="18" selection-start-line="31" selection-start-column="4" selection-end-line="31" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -336,6 +169,12 @@
       <find>accepted</find>
       <find>special</find>
       <find>Ответить</find>
+      <find>offers</find>
+      <find>props</find>
+      <find>&lt;Loader</find>
+      <find>currentLang</find>
+      <find>getTranslate</find>
+      <find>map</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -350,12 +189,18 @@
         <option value="$PROJECT_DIR$/public/inner3.html" />
         <option value="$PROJECT_DIR$/build/index.html" />
         <option value="$PROJECT_DIR$/src/Words.js" />
-        <option value="$PROJECT_DIR$/src/index.js" />
-        <option value="$PROJECT_DIR$/src/WordList.js" />
         <option value="$PROJECT_DIR$/src/comments.js" />
-        <option value="$PROJECT_DIR$/src/CommentArea.js" />
-        <option value="$PROJECT_DIR$/public/index.html" />
+        <option value="$PROJECT_DIR$/public/css/additional.css" />
+        <option value="$PROJECT_DIR$/src/img/svg_list.js" />
         <option value="$PROJECT_DIR$/src/SingleComments.js" />
+        <option value="$PROJECT_DIR$/src/WordList.js" />
+        <option value="$PROJECT_DIR$/src/img/svgList.js" />
+        <option value="$PROJECT_DIR$/src/CommentArea.js" />
+        <option value="$PROJECT_DIR$/src/index.js" />
+        <option value="$PROJECT_DIR$/src/params.js" />
+        <option value="$PROJECT_DIR$/src/singleComment.js" />
+        <option value="$PROJECT_DIR$/src/commentArea.js" />
+        <option value="$PROJECT_DIR$/public/index.html" />
       </list>
     </option>
   </component>
@@ -371,8 +216,28 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane" />
       <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="React Tests" type="b2602c69:ProjectViewProjectNode" />
+              <item name="react-tests" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="React Tests" type="b2602c69:ProjectViewProjectNode" />
+              <item name="react-tests" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="React Tests" type="b2602c69:ProjectViewProjectNode" />
+              <item name="react-tests" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -393,6 +258,7 @@
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="Template Data Languages" />
+    <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\PhpStorm 2018.3.6\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -448,18 +314,29 @@
       <workItem from="1605695433612" duration="2456000" />
       <workItem from="1606222436928" duration="6927000" />
       <workItem from="1606276171898" duration="4084000" />
-      <workItem from="1606819245009" duration="11441000" />
+      <workItem from="1606819245009" duration="11666000" />
+      <workItem from="1606970844947" duration="10801000" />
+      <workItem from="1606988886014" duration="2400000" />
+      <workItem from="1606992060177" duration="14122000" />
     </task>
+    <task id="LOCAL-00001" summary="step">
+      <created>1606834346522</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1606834346522</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="32028000" />
+    <option name="totallyTimeSpent" value="59576000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49945828" weight="0.26066098" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49945828" visible="true" weight="0.26066098" />
       <window_info id="Structure" order="1" sideWeight="0.5005417" side_tool="true" weight="0.2553305" />
       <window_info id="npm" order="2" sideWeight="0.5005417" side_tool="true" weight="0.2553305" />
       <window_info id="Favorites" order="3" sideWeight="0.5005417" side_tool="true" weight="0.2553305" />
@@ -477,6 +354,7 @@
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.32936078" />
       <window_info anchor="bottom" id="Inspection Results" order="12" weight="0.32936078" />
       <window_info anchor="bottom" id="Messages" order="13" />
+      <window_info anchor="bottom" id="TypeScript" order="14" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -485,6 +363,10 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="step" />
+    <option name="LAST_COMMIT_MESSAGE" value="step" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/.gitignore">
@@ -546,38 +428,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/reportWebVitals.js">
+    <entry file="file://$PROJECT_DIR$/node_modules/axios/index.d.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="8" column="7" lean-forward="true" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
+        <state relative-caret-position="304">
+          <caret line="139" column="2" selection-start-line="139" selection-start-column="2" selection-end-line="139" selection-end-column="2" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/index.js">
+    <entry file="file://$PROJECT_DIR$/public/css/additional.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="9" column="9" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="9" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="814">
+          <caret line="37" column="1" selection-start-line="37" selection-start-column="1" selection-end-line="37" selection-end-column="1" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/WordList.js">
+    <entry file="file://$PROJECT_DIR$/node_modules/react-loader-spinner/dist/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="31" column="18" selection-start-line="31" selection-start-column="4" selection-end-line="31" selection-end-column="18" />
-        </state>
+        <state relative-caret-position="-2611" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/comments.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="18" column="21" selection-start-line="18" selection-start-column="9" selection-end-line="18" selection-end-column="21" />
+        <state relative-caret-position="334">
+          <caret line="1698" column="20" selection-start-line="1698" selection-start-column="9" selection-end-line="1698" selection-end-column="20" />
           <folding>
-            <element signature="e#523#5851#0" />
-            <element signature="e#8697#8945#0" />
-            <element signature="e#9437#9685#0" />
+            <element signature="e#610#7468#0" />
             <element signature="e#3#9#0" expanded="true" />
             <element signature="e#35#41#0" expanded="true" />
             <element signature="e#48#54#0" expanded="true" />
@@ -606,30 +481,100 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/CommentArea.js">
+    <entry file="file://$PROJECT_DIR$/src/img/svgList.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="20" selection-start-line="20" selection-end-line="20" />
+        <state relative-caret-position="487">
+          <caret line="24" selection-start-line="24" selection-end-line="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/reportWebVitals.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="8" column="7" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/react-loader-spinner/index.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/wordList.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
           <folding>
-            <element signature="e#0#37#0" expanded="true" />
+            <element signature="e#17#1570#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="9" column="14" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="14" />
+          <folding>
+            <element signature="n#!!doc" />
+            <element signature="e#463#537#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/params.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="6" column="11" selection-start-line="6" selection-start-column="11" selection-end-line="6" selection-end-column="11" />
+          <folding>
+            <element signature="e#0#80#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/singleComment.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2046">
+          <caret line="130" column="68" lean-forward="true" selection-start-line="130" selection-start-column="68" selection-end-line="130" selection-end-column="68" />
+          <folding>
+            <element signature="n#RegularCommentBody#0" />
+            <element signature="n#!!block;n#render#0;n#RegularCommentBody#0" />
+            <element signature="n#HiddenCommentBody#0" />
+            <element signature="n#!!block;n#render#0;n#HiddenCommentBody#0" />
+            <element signature="e#1998#2504#0" />
+            <element signature="e#2217#2318#0" />
+            <element signature="e#2335#2485#0" />
+            <element signature="n#AcceptedCommentBody#0" />
+            <element signature="n#!!block;n#render#0;n#AcceptedCommentBody#0" />
+            <element signature="e#2701#2917#0" />
+            <element signature="e#3243#3424#0" />
+            <element signature="e#3784#3953#0" />
+            <element signature="e#4016#4397#0" />
+            <element signature="e#4043#4160#0" />
+            <element signature="e#4185#4373#0" />
+            <element signature="n#LikedBtn#0" />
+            <element signature="n#!!block;n#render#0;n#LikedBtn#0" />
+            <element signature="n#LikeBtn#0" />
+            <element signature="n#!!block;n#render#0;n#LikeBtn#0" />
+            <element signature="e#4835#5075#0" />
+            <element signature="e#4906#5106#0" />
+            <element signature="n#AddCommentBtn#0" />
+            <element signature="n#!!block;n#render#0;n#AddCommentBtn#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/commentArea.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="46" column="16" selection-start-line="46" selection-start-column="16" selection-end-line="46" selection-end-column="16" />
+          <folding>
+            <element signature="e#57#94#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="616">
-          <caret line="68" column="51" selection-start-line="68" selection-start-column="51" selection-end-line="68" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/SingleComments.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-107">
-          <caret line="109" lean-forward="true" selection-start-line="109" selection-end-line="109" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="333">
+          <caret line="90" column="21" selection-start-line="90" selection-start-column="21" selection-end-line="90" selection-end-column="21" />
         </state>
       </provider>
     </entry>

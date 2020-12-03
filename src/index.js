@@ -1,17 +1,24 @@
+/**
+ * @author Abrorxon Obidov
+ * @date 2020-12-03
+ */
+
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
-import CommentArea from "./CommentArea";
+import CommentArea from "./commentArea";
+
 
 const rootTag = document.getElementById('comment-block');
 
+
 ReactDOM.render(
-  <React.StrictMode>
-    <CommentArea
-        lang={rootTag.getAttribute('lang')}
-        userId={rootTag.getAttribute('data-user-id')}
-        docId={rootTag.getAttribute('data-doc-id')} />
-  </React.StrictMode>,
+    <React.StrictMode>
+        <CommentArea
+            userId={rootTag.getAttribute('data-user-id')}
+            docId={rootTag.getAttribute('data-doc-id')}/>
+    </React.StrictMode>,
     rootTag
 );
 

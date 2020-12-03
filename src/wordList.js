@@ -1,13 +1,27 @@
+/**
+ * @author Abrorxon Obidov
+ * @date 2020-12-03
+ */
+
+
+import {currentLang} from "./params";
+
+
 const WordList = {
     offers: {
         ru: 'Предложения',
         uz: 'Таклифлар',
         oz: 'Takliflar'
     },
-    showOffers: {
+    showComments: {
         ru: 'Показат предложении',
         uz: 'Таклифларни кўрсатиш',
         oz: 'Takliflarni koʻrsatish'
+    },
+    hideComments: {
+        ru: 'Скрыть предложении',
+        uz: 'Таклифларни ёпиш',
+        oz: 'Takliflarni yopish'
     },
     support_count: {
         ru: 'Количество голосов',
@@ -71,12 +85,5 @@ const WordList = {
     }
 };
 
-export const getTranslate = (key, lang = null) => {
-    return WordList[key][lang ?? getCurrentLang()]
-};
 
-let getCurrentLang = () => {
-    return document.getElementById('html').getAttribute('lang')
-};
-
-//export default WordList;
+export let Translate = (key) =>  WordList[key][currentLang];
