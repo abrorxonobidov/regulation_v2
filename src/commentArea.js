@@ -31,6 +31,14 @@ export default class CommentArea extends Component {
         };
     }
 
+    showNewReply = (newReply) => {
+        let newCommentList =  this.state.comments;
+        newCommentList[newReply.parentCommentKey]['user_answers'].push(newReply);
+        this.setState({
+            comments: newCommentList
+        })
+    };
+
     getData = () => {
 
         if (this.state.shown) {
@@ -51,7 +59,6 @@ export default class CommentArea extends Component {
             axios.post(ApiUrl('get-comments'), data)
                 .then(res => {
                     if (res.status === 200 && res.statusText === 'OK') {
-                        console.log(res);
                         if (res.data) {
                             this.setState({
                                 comments: res.data,
@@ -80,7 +87,7 @@ export default class CommentArea extends Component {
     };
 
     componentDidMount() {
-        //this.getData()
+        this.getData()
     }
 
     render() {
@@ -100,8 +107,8 @@ export default class CommentArea extends Component {
                         {
                             this.state.shown ?
                                 this.state.comments.map(
-                                    (comment, key) => <SingleComment comment={comment} key={key}
-                                                                     userId={this.props.userId}/>
+                                    (comment, key) =>
+                                        <SingleComment comment={comment} key={key} userId={this.props.userId} parentCommentKey={key} showNewReply={this.showNewReply}/>
                                 )
                                 : ''
                         }

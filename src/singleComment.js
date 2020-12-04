@@ -19,6 +19,7 @@ export class SingleComment extends Component {
     key;
     comment;
     userId;
+    parentCommentKey;
 
     constructor(props) {
         super(props);
@@ -26,6 +27,7 @@ export class SingleComment extends Component {
             comment: this.props.comment,
             showReplyPoly: false
         };
+        this.showNewReply = this.props.showNewReply.bind(this);
     }
 
     support = () => {
@@ -68,9 +70,6 @@ export class SingleComment extends Component {
         })
     };
 
-    addIntoView = () => {
-        console.log('Added into view')
-    };
 
     render() {
 
@@ -108,7 +107,12 @@ export class SingleComment extends Component {
 
                 {comment.file ? <DownloadBtn id={comment.id} d={comment.document_id} file={comment.file}/> : ''}
 
-                {this.state.showReplyPoly ? <ReplyPoly parentId={comment.id} userId={this.props.userId} addIntoViewFn={this.addIntoView}/> : ''}
+                {
+                    this.state.showReplyPoly ?
+                    <ReplyPoly parentId={comment.id} userId={this.props.userId} showNewReply={this.showNewReply} parentCommentKey={this.props.parentCommentKey}/>
+                    :
+                    ''
+                }
 
                 {comment.authority_answers.map((answer, key) => AuthorityAnswer(answer, key))}
 
@@ -124,36 +128,35 @@ class ReplyPoly extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            text: ''
+            content: ''
         };
+        this.showNewReply = this.props.showNewReply.bind(this)
     }
 
     userId;
     parentId;
-    addIntoViewFn;
-
-    addIntoView = () => this.props.addIntoViewFn;
+    parentCommentKey;
 
     sendComment = () => {
-        if (this.state.text.length > 0) {
-
-            console.log('userId', this.props.userId);
-            console.log('parentId', this.props.parentId);
-            console.log('text', this.state.text);
+        if (this.state.content.length > 0) {
 
             let data = new FormData();
             data.append('user_id', this.props.userId);
             data.append('parent_id', this.props.parentId);
-            data.append('content', this.state.text);
+            data.append('content', this.state.content);
 
             axios.post(ApiUrl('send-comment'), data)
                 .then(res => {
                     if (res.status === 200 && res.statusText === 'OK') {
                         if (res.data && res.data.status) {
+                            let newReply = res.data.data;
+                            newReply.content = this.state.content;
+                            newReply.parentCommentKey = this.props.parentCommentKey;
+                            newReply.parentId = this.props.parentId;
                             this.setState({
-                                text: ''
+                                content: ''
                             });
-                            this.addIntoView();
+                            this.showNewReply(newReply);
                         } else {
                             alertToUser(res.data['alertText'])
                         }
@@ -173,14 +176,14 @@ class ReplyPoly extends Component {
 
     setCommentText = (e) => {
         this.setState({
-            text: e.target.value
+            content: e.target.value
         })
     };
 
     render() {
         return (
             <div>
-                <textarea value={this.state.text} placeholder={Translate('text_here') + '...'} onChange={this.setCommentText}/>
+                <textarea value={this.state.content} placeholder={Translate('text_here') + '...'} onChange={this.setCommentText}/>
                 <button type="button" className="blue_link pull-right" onClick={this.sendComment}>
                     {Translate('reply_btn_text')}
                 </button>
