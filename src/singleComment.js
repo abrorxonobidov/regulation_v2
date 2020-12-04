@@ -5,7 +5,7 @@
 
 
 import React, {Component} from "react";
-import {Translate} from "./wordList";
+import {translate} from "./wordList";
 import {LikedBtnSvg, LikeBtnSvg, DownloadBtnSvg} from "./img/svgList"
 import {hostname, currentLang, ApiUrl} from "./params";
 import axios from "axios";
@@ -137,7 +137,7 @@ class ReplyPoly extends Component {
     parentId;
     parentCommentKey;
 
-    sendComment = () => {
+    sendReply = () => {
         if (this.state.content.length > 0) {
 
             let data = new FormData();
@@ -170,7 +170,7 @@ class ReplyPoly extends Component {
                 });
 
         } else {
-            alert(Translate('text_here'))
+            alert(translate('text_here'))
         }
     };
 
@@ -183,9 +183,9 @@ class ReplyPoly extends Component {
     render() {
         return (
             <div>
-                <textarea value={this.state.content} placeholder={Translate('text_here') + '...'} onChange={this.setCommentText}/>
-                <button type="button" className="blue_link pull-right" onClick={this.sendComment}>
-                    {Translate('reply_btn_text')}
+                <textarea value={this.state.content} placeholder={translate('text_here') + '...'} onChange={this.setCommentText}/>
+                <button type="button" className="blue_link pull-right" onClick={this.sendReply}>
+                    {translate('reply_btn_text')}
                 </button>
             </div>
         )
@@ -206,13 +206,13 @@ export class HiddenCommentBody extends Component {
     render() {
         return (
             <div className="text_write hidden_block">
-                <p className="hidden_comment">{Translate('hidden_comment')}</p>
+                <p className="hidden_comment">{translate('hidden_comment')}</p>
                 <div dangerouslySetInnerHTML={{__html: this.props.content}}/>
                 <div className="their_name">
                     <span>{authorityTitle}</span>
                 </div>
                 <div className="reason_to_hide"
-                     dangerouslySetInnerHTML={{__html: '<b>' + Translate('asos') + ': </b>' + this.props.reason}}/>
+                     dangerouslySetInnerHTML={{__html: '<b>' + translate('asos') + ': </b>' + this.props.reason}}/>
             </div>
         )
     }
@@ -225,7 +225,7 @@ export class AcceptedCommentBody extends Component {
     render() {
         return (
             <div className="text_write green_block">
-                <p className="accepted">{Translate('accepted_comment')}</p>
+                <p className="accepted">{translate('accepted_comment')}</p>
                 <div dangerouslySetInnerHTML={{__html: this.props.content}}/>
             </div>
         )
@@ -239,7 +239,7 @@ const AuthorityAnswer = (answer, key) => {
     return (
         <div className="their_text org_text" key={key}>
             <div className="text_write">
-                <p className="reject"> {Translate('denied_comment')}</p>
+                <p className="reject"> {translate('denied_comment')}</p>
                 <div dangerouslySetInnerHTML={{__html: answer.content}}/>
                 <div className="their_name">
                     <span>{answer.authority}</span>
@@ -254,7 +254,7 @@ const AuthorityAnswer = (answer, key) => {
 const UserReply = (reply, key) => {
     return (
         <div className={reply.is_hidden ? 'answer_box hidden_block' : 'answer_box'} key={key}>
-            {reply.is_hidden ? <p className="hidden_comment">{Translate('hidden_comment')}</p> : ''}
+            {reply.is_hidden ? <p className="hidden_comment">{translate('hidden_comment')}</p> : ''}
             <div dangerouslySetInnerHTML={{__html: reply.content}}/>
             <div className="their_name">
                 <span> {reply.full_name} </span>
@@ -267,7 +267,7 @@ const UserReply = (reply, key) => {
                             <span>{authorityTitle}</span>
                         </div>
                         <div className="reason_to_hide">
-                            <b>{Translate('hidden_description')}: </b>
+                            <b>{translate('hidden_description')}: </b>
                             {reply.reason_to_hide}
                         </div>
                     </> : ''
@@ -297,7 +297,7 @@ let DownloadBtn = (props) => {
     return (
         <a href={hostname + '/' + currentLang + '/download/dc-f?c=' + props.id + '&d=' + props.d + '&f=' + props.file}
            className="dc-f">
-            {DownloadBtnSvg} {Translate('download')}
+            {DownloadBtnSvg} {translate('download')}
         </a>
     );
 };
@@ -306,7 +306,7 @@ let DownloadBtn = (props) => {
 class AddCommentBtn extends Component {
     render() {
         return (
-            <button type="button" onClick={this.props.onClick}>{Translate('reply_btn_text')}</button>
+            <button type="button" onClick={this.props.onClick}>{translate('reply_btn_text')}</button>
         )
     }
 }

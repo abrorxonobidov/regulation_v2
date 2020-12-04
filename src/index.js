@@ -16,6 +16,7 @@ const rootTag = document.getElementById('comment-block');
 ReactDOM.render(
         <CommentArea
             userId={rootTag.getAttribute('data-user-id')}
+            userSpec={rootTag.getAttribute('data-user-spec')}
             docId={rootTag.getAttribute('data-doc-id')}/>,
     rootTag
 );

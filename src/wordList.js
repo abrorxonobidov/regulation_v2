@@ -87,8 +87,13 @@ const WordList = {
         ru: 'Введите текст',
         uz: 'Матнни киритинг',
         oz: 'Matnni kiriting'
+    },
+    leaveComment: {
+        ru: 'Отправить предложение',
+        uz: 'Таклиф қолдириш',
+        oz: 'Taklif qoldirish'
     }
 };
 
 
-export let Translate = (key) =>  WordList[key][currentLang];
+export let translate = (key) =>  WordList[key][currentLang];
