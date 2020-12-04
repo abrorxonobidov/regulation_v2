@@ -7,7 +7,7 @@
 import {Translate} from './wordList';
 import {Component} from 'react';
 import React from 'react';
-import {SingleComment} from "./singleComment";
+import {SingleComment, alertToUser} from "./singleComment";
 import axios from 'axios';
 import Loader from 'react-loader-spinner';
 import {ApiUrl} from './params'
@@ -50,21 +50,38 @@ export default class CommentArea extends Component {
 
             axios.post(ApiUrl('get-comments'), data)
                 .then(res => {
-                    this.setState({
-                        comments: res.data,
-                        shown: true,
-                        isProcessing: false,
-                        countComment: res.data.length
-                    });
-                    document.getElementById('count-comment').innerText = this.state.countComment;
+                    if (res.status === 200 && res.statusText === 'OK') {
+                        console.log(res);
+                        if (res.data) {
+                            this.setState({
+                                comments: res.data,
+                                shown: true,
+                                isProcessing: false,
+                                countComment: res.data.length
+                            });
+                            document.getElementById('count-comment').innerText = this.state.countComment;
+                        } else {
+                            alertToUser('Izohlar mavjud emas');
+                        }
+                    } else {
+                        alertToUser(res.status + res.statusText)
+                    }
                 })
                 .catch(error => {
+                    this.setState({
+                        isProcessing: false
+                    });
+                    alertToUser('Error in connection');
                     console.log(error);
                 });
 
         }
 
     };
+
+    componentDidMount() {
+        //this.getData()
+    }
 
     render() {
 
@@ -83,31 +100,40 @@ export default class CommentArea extends Component {
                         {
                             this.state.shown ?
                                 this.state.comments.map(
-                                    (comment, key) => <SingleComment comment={comment} key={key}/>
+                                    (comment, key) => <SingleComment comment={comment} key={key}
+                                                                     userId={this.props.userId}/>
                                 )
                                 : ''
                         }
                     </ul>
-                    <ul style={{
-                        display: this.state.isProcessing ? 'block' : 'none ',
-                        textAlign: 'center'
-                    }}>
-                        <li style={{display: 'inline-block'}}>
-                            <Loader type="BallTriangle" color="#05439d" height={60} width={70}/>
-                        </li>
-                        <li style={{display: 'inline-block'}}>
-                            <Loader type="BallTriangle" color="#05439d" height={60} width={70}/>
-                        </li>
-                        <li style={{display: 'inline-block'}}>
-                            <Loader type="BallTriangle" color="#05439d" height={60} width={70}/>
-                        </li>
-                        <li style={{display: 'inline-block'}}>
-                            <Loader type="BallTriangle" color="#05439d" height={60} width={70}/>
-                        </li>
-                    </ul>
+                    <Loaders show={this.state.isProcessing}/>
                 </div>
             </div>
         )
     }
 
+}
+
+class Loaders extends Component {
+    render() {
+        return (
+            <ul style={{
+                display: this.props.show ? 'block' : 'none ',
+                textAlign: 'center'
+            }}>
+                <li style={{display: 'inline-block'}}>
+                    <Loader type="BallTriangle" color="#05439d" height={60} width={70}/>
+                </li>
+                <li style={{display: 'inline-block'}}>
+                    <Loader type="BallTriangle" color="#05439d" height={60} width={70}/>
+                </li>
+                <li style={{display: 'inline-block'}}>
+                    <Loader type="BallTriangle" color="#05439d" height={60} width={70}/>
+                </li>
+                <li style={{display: 'inline-block'}}>
+                    <Loader type="BallTriangle" color="#05439d" height={60} width={70}/>
+                </li>
+            </ul>
+        )
+    }
 }

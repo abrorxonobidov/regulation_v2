@@ -82,6 +82,11 @@ const WordList = {
         ru: 'Обоснование',
         uz: 'Асос',
         oz: 'Asos'
+    },
+    text_here: {
+        ru: 'Введите текст',
+        uz: 'Матнни киритинг',
+        oz: 'Matnni kiriting'
     }
 };
 
