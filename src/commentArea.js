@@ -91,8 +91,12 @@ export default class CommentArea extends Component {
         })
     };
 
+    sendComment = (params) => {
 
-    sendComment = () => {
+        console.log('parent send comment works');
+        console.log(params);
+
+   /*
         if (this.state.newCommentText.length > 0) {
 
             let data = new FormData();
@@ -128,16 +132,18 @@ export default class CommentArea extends Component {
         } else {
             alert(translate('text_here'))
         }
+
+        */
     };
 
     componentDidMount() {
-        //this.getData()
+        this.getData()
     }
 
     render() {
 
         return (
-            <div>
+            <>
                 <div className="comment_links">
                     {translate('offers')} <span>{this.state.countComment}</span>
                     <button type="button" className="blue_link" onClick={this.getData}>
@@ -145,9 +151,10 @@ export default class CommentArea extends Component {
                     </button>
                     <div className="clearfix"></div>
                 </div>
+                <Loaders show={this.state.isProcessing}/>
                 <div className="correspondence">
-                    <ul id="scroll_vertical" className="correspondence_list"
-                        style={{display: this.state.shown ? 'block' : 'none'}}>
+                    <div className="correspondence_list"
+                         style={{display: this.state.shown ? 'block' : 'none'}}>
                         {
                             this.state.shown ?
                                 this.state.comments.map(
@@ -157,11 +164,18 @@ export default class CommentArea extends Component {
                                 )
                                 : ''
                         }
-                    </ul>
-                    <Loaders show={this.state.isProcessing}/>
+                    </div>
                 </div>
-                {!this.state.shown ? <CommentEditor/> : ''}
-            </div>
+                {
+                    this.state.shown ?
+                        <CommentEditor
+                            userSpec={this.props.userSpec}
+                            sendComment={this.sendComment}
+                        />
+                        :
+                        ''
+                }
+            </>
         )
     }
 
@@ -193,10 +207,23 @@ class Loaders extends Component {
 
 
 class CommentEditor extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            isProcessing: false,
+            commentText: ''
+        };
+        this.sendComment = this.props.sendComment.bind(this)
+    }
+
     render() {
         return (
-            <div>
-
+            <>
+                <button className="submit-comment blue_link"
+                        onClick={() => this.sendComment(this.state)}>
+                    {translate('leaveComment')}
+                </button>
                 <CKEditor
                     config={
                         {
@@ -210,13 +237,11 @@ class CommentEditor extends Component {
                         }
                     }
                     onChange={e => this.setState({
-                        newCommentText: e.editor.getData().trim()
+                        commentText: e.editor.getData().trim()
                     })}
                 />
-                <button type="submit" className="submit-comment blue_link">
-                    {translate('leaveComment')}
-                </button>
-            </div>
+
+            </>
         )
     }
 }

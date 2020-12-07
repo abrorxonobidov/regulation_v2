@@ -85,7 +85,7 @@ export class SingleComment extends Component {
         }
 
         return (
-            <li className="their_text">
+            <div className="their_text">
                 <div className="their_name">
                     <span>
                         {comment.full_name}
@@ -117,7 +117,7 @@ export class SingleComment extends Component {
                 {comment.authority_answers.map((answer, key) => AuthorityAnswer(answer, key))}
 
                 {comment.user_answers.map((reply, key) => UserReply(reply, key))}
-            </li>
+            </div>
         )
     }
 

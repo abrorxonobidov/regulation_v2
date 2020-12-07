@@ -2169,7 +2169,7 @@ a.save_btn:hover img{
     float: left;
     width: calc(100% - 25px);
 }
-.correspondence_list li{
+.correspondence_list > div{
     position: relative;
     list-style: none;
     font-family: "Montserrat-Medium";
@@ -2177,11 +2177,11 @@ a.save_btn:hover img{
     color: #5e5e5e;
     margin-bottom: 25px;
 }
-.correspondence_list li textarea{
-    display: table;
-    width: 95.5%;
-    resize: none;
-    height: 100px;
+.correspondence_list > div textarea{
+    display: block;
+    width: 100%;
+    /*resize: none;
+    height: 100px*/;
     outline: none;
     border: 1px solid #d8d8d8;
     border-radius: 5px;
@@ -2319,7 +2319,7 @@ a.save_btn:hover img{
     font-size: 16px;
 }
 #scroll_vertical{
-    height: 400px;
+    /*height: 400px;*/
     margin-bottom: 50px;
 }
 .number_views{
