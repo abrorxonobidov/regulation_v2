@@ -241,10 +241,7 @@ class CommentEditor extends Component {
     render() {
         return (
             <>
-                <button className="submit-comment blue_link" disabled={this.props.isNewCommentProcessing}
-                        onClick={() => this.sendComment(this.state)}>
-                    {translate('leaveComment')}
-                </button>
+                <button style={{height: 0, width: '100%', border: 'none'}}> </button>
                 <CKEditor
                     data = {this.props.initText}
                     config={
@@ -262,11 +259,10 @@ class CommentEditor extends Component {
                         content: e.editor.getData().trim()
                     })}
                 />
-                <button className="submit-comment blue_link" disabled={this.props.isNewCommentProcessing}
+                <button className="pull-right blue_link" disabled={this.props.isNewCommentProcessing}
                         onClick={() => this.sendComment(this.state)}>
                     {translate('leaveComment')}
                 </button>
-
             </>
         )
     }
