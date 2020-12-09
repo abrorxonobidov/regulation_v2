@@ -27,25 +27,27 @@ export default class CommentArea extends Component {
         super(props);
         this.state = {
             comments: [],
-            isProcessing: false,
-            shown: false,
+            isCommentListProcessing: false,
+            isCommentListShown: false,
             countComment: countComment,
-            newCommentText: '',
-            newCommentSpec: this.props.userSpec,
-            newCommentFile: null,
+            userSpec: this.props.userSpec,
+            isNewCommentProcessing: false,
+            commentEditorInitText: false
         };
     }
 
-    getData = () => {
+    getCommentList = () => {
 
-        if (this.state.shown) {
+        if (this.state.isCommentListShown) {
 
-            this.setState({shown: false})
+            this.setState({
+                isCommentListShown: false
+            })
 
         } else {
 
             this.setState({
-                isProcessing: true
+                isCommentListProcessing: true
             });
 
 
@@ -59,8 +61,8 @@ export default class CommentArea extends Component {
                         if (res.data) {
                             this.setState({
                                 comments: res.data,
-                                shown: true,
-                                isProcessing: false,
+                                isCommentListShown: true,
+                                isCommentListProcessing: false,
                                 countComment: res.data.length
                             });
                             document.getElementById('count-comment').innerText = this.state.countComment;
@@ -73,7 +75,7 @@ export default class CommentArea extends Component {
                 })
                 .catch(error => {
                     this.setState({
-                        isProcessing: false
+                        isCommentListProcessing: false
                     });
                     alertToUser('Error in connection');
                     console.log(error);
@@ -93,30 +95,43 @@ export default class CommentArea extends Component {
 
     sendComment = (params) => {
 
-        console.log('parent send comment works');
-        console.log(params);
+        if (params.content.length > 0) {
+            this.setState({
+                isNewCommentProcessing: true
+            });
+            let comment = new FormData();
+            comment.append('content', params.content);
+            comment.append('user_id', this.props.userId);
+            comment.append('document_id', this.props.docId);
+            comment.append('u_s_i', params.userSpec ?? this.state.userSpec);
+            comment.append('c_f_i', params.file);
 
-   /*
-        if (this.state.newCommentText.length > 0) {
-
-            let data = new FormData();
-            data.append('user_id', this.props.userId);
-            data.append('c_f_i', this.state.newCommentFile);
-            data.append('u_s_i', this.state.newCommentSpec);
-            data.append('content', this.state.newCommentText);
-
-            axios.post(ApiUrl('send-comment'), data)
+            axios.post(ApiUrl('send-comment'), comment)
                 .then(res => {
                     if (res.status === 200 && res.statusText === 'OK') {
                         if (res.data && res.data.status) {
-                            let newReply = res.data.data;
-                            newReply.content = this.state.content;
-                            newReply.parentCommentKey = this.props.parentCommentKey;
-                            newReply.parentId = this.props.parentId;
+                            let newComment = res.data.data;
+                            newComment.content = params.content;
+                            newComment.document_id = this.props.docId;
+                            newComment.entity_id = this.props.docId;
+                            newComment.parent_id = null;
+                            newComment.authority = null;
+                            newComment.is_anonymous = false;
+                            newComment.is_applied = false;
+                            newComment.is_answered = false;
+                            newComment.support_count = 0;
+                            newComment.is_hidden = false;
+                            newComment.reason_to_hide = null;
+                            newComment.is_supported = false;
+                            newComment.authority_answers = [];
+                            newComment.user_answers = [];
+                            let allComments = this.state.comments;
+                            allComments.push(newComment);
                             this.setState({
-                                content: ''
+                                comments: allComments,
+                                isNewCommentProcessing: false,
+                                commentEditorInitText: !this.state.commentEditorInitText
                             });
-                            this.showNewReply(newReply);
                         } else {
                             alertToUser(res.data['alertText'])
                         }
@@ -133,11 +148,11 @@ export default class CommentArea extends Component {
             alert(translate('text_here'))
         }
 
-        */
+
     };
 
     componentDidMount() {
-        this.getData()
+        this.getCommentList()
     }
 
     render() {
@@ -146,20 +161,21 @@ export default class CommentArea extends Component {
             <>
                 <div className="comment_links">
                     {translate('offers')} <span>{this.state.countComment}</span>
-                    <button type="button" className="blue_link" onClick={this.getData}>
-                        {translate(this.state.shown ? 'hideComments' : 'showComments')}
+                    <button type="button" className="blue_link" onClick={this.getCommentList}>
+                        {translate(this.state.isCommentListShown ? 'hideComments' : 'showComments')}
                     </button>
                     <div className="clearfix"></div>
                 </div>
-                <Loaders show={this.state.isProcessing}/>
+                <Loaders show={this.state.isCommentListProcessing}/>
                 <div className="correspondence">
                     <div className="correspondence_list"
-                         style={{display: this.state.shown ? 'block' : 'none'}}>
+                         style={{display: this.state.isCommentListShown ? 'block' : 'none'}}>
                         {
-                            this.state.shown ?
+                            this.state.isCommentListShown ?
                                 this.state.comments.map(
                                     (comment, key) =>
                                         <SingleComment comment={comment} key={key} userId={this.props.userId}
+                                                       docId={this.props.docId}
                                                        parentCommentKey={key} showNewReply={this.showNewReply}/>
                                 )
                                 : ''
@@ -167,10 +183,11 @@ export default class CommentArea extends Component {
                     </div>
                 </div>
                 {
-                    this.state.shown ?
+                    this.state.isCommentListShown ?
                         <CommentEditor
                             userSpec={this.props.userSpec}
                             sendComment={this.sendComment}
+                            initText={this.state.commentEditorInitText}
                         />
                         :
                         ''
@@ -208,11 +225,15 @@ class Loaders extends Component {
 
 class CommentEditor extends Component {
 
+    initText;
+    isNewCommentProcessing;
+
     constructor(props) {
         super(props);
         this.state = {
-            isProcessing: false,
-            commentText: ''
+            content: '',
+            userSpec: 5,
+            file: null
         };
         this.sendComment = this.props.sendComment.bind(this)
     }
@@ -220,11 +241,12 @@ class CommentEditor extends Component {
     render() {
         return (
             <>
-                <button className="submit-comment blue_link"
+                <button className="submit-comment blue_link" disabled={this.props.isNewCommentProcessing}
                         onClick={() => this.sendComment(this.state)}>
                     {translate('leaveComment')}
                 </button>
                 <CKEditor
+                    data = {this.props.initText}
                     config={
                         {
                             toolbar: [
@@ -237,9 +259,13 @@ class CommentEditor extends Component {
                         }
                     }
                     onChange={e => this.setState({
-                        commentText: e.editor.getData().trim()
+                        content: e.editor.getData().trim()
                     })}
                 />
+                <button className="submit-comment blue_link" disabled={this.props.isNewCommentProcessing}
+                        onClick={() => this.sendComment(this.state)}>
+                    {translate('leaveComment')}
+                </button>
 
             </>
         )

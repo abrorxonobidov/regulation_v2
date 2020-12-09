@@ -19,6 +19,7 @@ export class SingleComment extends Component {
     key;
     comment;
     userId;
+    docId;
     parentCommentKey;
 
     constructor(props) {
@@ -109,7 +110,7 @@ export class SingleComment extends Component {
 
                 {
                     this.state.showReplyPoly ?
-                    <ReplyPoly parentId={comment.id} userId={this.props.userId} showNewReply={this.showNewReply} parentCommentKey={this.props.parentCommentKey}/>
+                    <ReplyPoly parentId={comment.id} userId={this.props.userId} docId={this.props.docId} showNewReply={this.showNewReply} parentCommentKey={this.props.parentCommentKey}/>
                     :
                     ''
                 }
@@ -143,6 +144,7 @@ class ReplyPoly extends Component {
             let data = new FormData();
             data.append('user_id', this.props.userId);
             data.append('parent_id', this.props.parentId);
+            data.append('document_id', this.props.docId);
             data.append('content', this.state.content);
 
             axios.post(ApiUrl('send-comment'), data)
