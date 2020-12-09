@@ -95,15 +95,18 @@ export default class CommentArea extends Component {
 
     sendComment = (params) => {
 
+        console.log(params);
+
         if (params.content.length > 0) {
             this.setState({
-                isNewCommentProcessing: true
+                isNewCommentProcessing: true,
+                userSpec: params.userSpec
             });
             let comment = new FormData();
             comment.append('content', params.content);
             comment.append('user_id', this.props.userId);
             comment.append('document_id', this.props.docId);
-            comment.append('u_s_i', params.userSpec ?? this.state.userSpec);
+            comment.append('u_s_i', this.state.userSpec);
             comment.append('c_f_i', params.file);
 
             axios.post(ApiUrl('send-comment'), comment)
@@ -181,17 +184,17 @@ export default class CommentArea extends Component {
                                 : ''
                         }
                     </div>
+                    {
+                        this.state.isCommentListShown ?
+                            <CommentEditor
+                                userSpec={this.state.userSpec}
+                                sendComment={this.sendComment}
+                                initText={this.state.commentEditorInitText}
+                            />
+                            :
+                            ''
+                    }
                 </div>
-                {
-                    this.state.isCommentListShown ?
-                        <CommentEditor
-                            userSpec={this.props.userSpec}
-                            sendComment={this.sendComment}
-                            initText={this.state.commentEditorInitText}
-                        />
-                        :
-                        ''
-                }
             </>
         )
     }
@@ -227,23 +230,97 @@ class CommentEditor extends Component {
 
     initText;
     isNewCommentProcessing;
+    userSpec;
 
     constructor(props) {
         super(props);
         this.state = {
             content: '',
-            userSpec: 5,
-            file: null
+            userSpec: this.props.userSpec,
+            file: null,
+            fileSummaryText: null,
+            fileSummaryClass: null
         };
         this.sendComment = this.props.sendComment.bind(this)
     }
 
+    config = {
+        allowedExtensions: ['doc', 'docx', 'pdf'],
+        maxFileSize: 20971520, //bytes
+        minFileSize: 1024 //bytes
+    };
+
+
+    chooseFile = (e) => {
+
+        this.setState({
+            fileSummaryText: null,
+            fileSummaryClass: null
+        });
+
+        let file = e.target.files[0];
+
+        if (file) {
+
+            let fileName = file.name;
+            let fileTitle = fileName.substring(0, fileName.lastIndexOf('.'));
+            let extension = fileName.substring(fileName.lastIndexOf('.') + 1, fileName.length);
+
+            if (fileTitle.length <= 0) {
+                this.setState({
+                    fileSummaryText: translate('incompatibleFile'),
+                    fileSummaryClass: 'text-danger'
+                });
+                return false
+            }
+
+            if (!this.config.allowedExtensions.includes(extension.toLowerCase())) {
+                this.setState({
+                    fileSummaryText: '<b>' + this.config.allowedExtensions.join(', ') + '</b> fayllar ruxsat etilgan',
+                    fileSummaryClass: 'text-danger'
+                });
+                return false
+            }
+
+            if (file.size < this.config.minFileSize || file.size > this.config.maxFileSize) {
+                this.setState({
+                    fileSummaryText: translate('incompatibleFileSize'),
+                    fileSummaryClass: 'text-danger'
+                });
+                return false
+            }
+
+            this.setState({
+                fileSummaryText: fileName,
+                fileSummaryClass: 'text-success',
+                file: file
+            })
+
+        }
+    };
+
+
+    clearFile = () => {
+        this.setState({
+            fileSummaryText: null,
+            fileSummaryClass: null,
+            file: null
+        })
+    };
+
+    selectSpec = (e) => {
+        this.setState({
+            userSpec: e.target.value
+        })
+        //todo user specni ko'rmayapti
+    };
+
     render() {
         return (
             <>
-                <button style={{height: 0, width: '100%', border: 'none'}}> </button>
+                <button style={{height: 0, width: '100%', border: 'none'}}></button>
                 <CKEditor
-                    data = {this.props.initText}
+                    data={this.props.initText}
                     config={
                         {
                             toolbar: [
@@ -259,10 +336,70 @@ class CommentEditor extends Component {
                         content: e.editor.getData().trim()
                     })}
                 />
-                <button className="pull-right blue_link" disabled={this.props.isNewCommentProcessing}
-                        onClick={() => this.sendComment(this.state)}>
-                    {translate('leaveComment')}
-                </button>
+                <br/>
+                <div className="row">
+                    <div className="col-md-3">
+                        <div className="form-group">
+                            <label htmlFor="comment-file" style={{width: '100%'}}>
+                                {translate('chooseFile')}
+                                <p style={{
+                                    backgroundColor: '#05439d',
+                                    padding: 8,
+                                    width: '100%',
+                                    height: 34,
+                                    borderRadius: 17,
+                                    textAlign: 'center',
+                                    color: '#ffffff',
+                                    marginTop: 5
+                                }}>
+                                    {translate('chooseFile')} <i className="glyphicon glyphicon-folder-open"></i>
+                                </p>
+                            </label>
+                            <div className="row">
+                                <div className="col-md-9">
+                                    <p className={this.state.fileSummaryClass}
+                                       dangerouslySetInnerHTML={{__html: this.state.fileSummaryText}}/>
+                                </div>
+                                <div className="col-md-3">
+                                    {
+                                        this.state.fileSummaryText ?
+                                            <button className='btn btn-default pull-right btn-sm'
+                                                    onClick={this.clearFile}>
+                                                <i className="text-danger glyphicon glyphicon-remove"></i>
+                                            </button>
+                                            : ''
+                                    }
+                                </div>
+                            </div>
+                            <input type="file" id="comment-file" className="hidden" onChange={this.chooseFile}/>
+                        </div>
+                    </div>
+                    <div className="col-md-3">
+                        <div className="form-group">
+                            <label htmlFor="comment-spec">
+                                {translate('chooseSpec')}
+                            </label>
+                            <select id="comment-spec" className="form-control" defaultValue={this.state.userSpec}
+                                    onChange={this.selectSpec}
+                                    style={{borderRadius: 20}}>
+                                <option value="1">Тадбиркор - 1</option>
+                                <option value="2">Давлат хизматчиси - 2</option>
+                                <option value="3">Илмий изланувчи - 3</option>
+                                <option value="4">Мустақил изланувчи - 4</option>
+                                <option value="5">Журналист/блогер - 5</option>
+                                <option value="6">Халқаро ташкилот ҳодими - 6</option>
+                                <option value="7">Дастурчи - 7</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div className="col-md-offset-3 col-md-3">
+                        <button className="pull-right blue_link" disabled={this.props.isNewCommentProcessing}
+                                onClick={() => this.sendComment(this.state)}>
+                            {translate('leaveComment')}
+                        </button>
+                    </div>
+                </div>
+
             </>
         )
     }

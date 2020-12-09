@@ -92,6 +92,26 @@ const WordList = {
         ru: 'Отправить предложение',
         uz: 'Таклиф қолдириш',
         oz: 'Taklif qoldirish'
+    },
+    chooseFile: {
+        ru: 'Выберите файл',
+        uz: 'Файлни танланг',
+        oz: 'Faylni tanlang'
+    },
+    chooseSpec: {
+        ru: 'Выберите профессию',
+        uz: 'Мутахассисликни танланг',
+        oz: 'Mutaxassislikni tanlang'
+    },
+    incompatibleFile: {
+        ru: 'Произошла ошибка при загрузке файла',
+        uz: 'Файл юклашда хатолик юз берди',
+        oz: 'Fayl yuklashda xatolik yuz berdi'
+    },
+    incompatibleFileSize: {
+        ru: 'Размер файла должен быть больше <b>1 KB</b> и меньше <b>20 МБ</b>',
+        uz: 'файл хажми <b>1 KB</b> дан катта ва <b>20 МБ</b> дан кичик бўлиши лозим',
+        oz: 'Fayl hajmi <b>1 KB</b> dan katta va <b>20 МБ</b> dan kichik boʻlishi lozim'
     }
 };
 
