@@ -303,7 +303,8 @@ class CommentEditor extends Component {
             fileSummaryText: null,
             fileSummaryClass: null,
             file: null
-        })
+        });
+        document.getElementById('comment-file').value = null;
     };
 
     selectUserSpec = (e) => {
@@ -392,7 +393,10 @@ class CommentEditor extends Component {
                     <div className="col-md-offset-3 col-md-3">
                         <button className="leave-comment-btn col-md-8 col-sm-4 col-xs-3"
                                 disabled={this.props.isNewCommentProcessing}
-                                onClick={() => this.sendComment(this.state)}>
+                                onClick={() => {
+                                    this.clearFile();
+                                    this.sendComment(this.state)
+                                }}>
                             {this.props.isNewCommentProcessing ?
                                 <Loader type="Oval" color="white" radius={18} height={24} width={24}/>
                                 :

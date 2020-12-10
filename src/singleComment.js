@@ -156,48 +156,49 @@ class ReplyPoly extends Component {
     parentCommentKey;
 
     sendReply = () => {
-        if (this.state.content.length > 0) {
-
-            this.setState({
-                isReplyProcessing: true
-            });
-            let data = new FormData();
-            data.append('user_id', this.props.userId);
-            data.append('parent_id', this.props.parentId);
-            data.append('document_id', this.props.docId);
-            data.append('content', this.state.content);
-
-            axios.post(ApiUrl('send-comment'), data)
-                .then(res => {
-                    if (res.status === 200 && res.statusText === 'OK') {
-                        if (res.data && res.data.status) {
-                            let newReply = res.data.data;
-                            newReply.content = this.state.content;
-                            newReply.parentCommentKey = this.props.parentCommentKey;
-                            newReply.parentId = this.props.parentId;
-                            this.setState({
-                                content: '',
-                                isReplyProcessing: false
-                            });
-                            this.showNewReply(newReply);
-                        } else {
-                            alertToUser(res.data['alertText'])
-                        }
-                    } else {
-                        alertToUser(res.statusText)
-                    }
-                })
-                .catch(error => {
-                    console.log(error);
-                    this.setState({
-                        isReplyProcessing: false
-                    });
-                    alertToUser('Error in connection')
-                });
-
-        } else {
-            alert(translate('text_here'))
+        if (this.state.content.length <= 0) {
+            alert(translate('text_here'));
+            return false
         }
+
+        this.setState({
+            isReplyProcessing: true
+        });
+
+        let data = new FormData();
+        data.append('user_id', this.props.userId);
+        data.append('parent_id', this.props.parentId);
+        data.append('document_id', this.props.docId);
+        data.append('content', stripHtml(this.state.content));
+
+        axios.post(ApiUrl('send-comment'), data)
+            .then(res => {
+                if (res.status === 200 && res.statusText === 'OK') {
+                    if (res.data && res.data.status) {
+                        let newReply = res.data.data;
+                        newReply.content = this.state.content;
+                        newReply.parentCommentKey = this.props.parentCommentKey;
+                        newReply.parentId = this.props.parentId;
+                        this.setState({
+                            content: '',
+                            isReplyProcessing: false
+                        });
+                        this.showNewReply(newReply);
+                    } else {
+                        alertToUser(res.data['alertText'])
+                    }
+                } else {
+                    alertToUser(res.statusText)
+                }
+            })
+            .catch(error => {
+                console.log(error);
+                this.setState({
+                    isReplyProcessing: false
+                });
+                alertToUser('Error in connection')
+            });
+
     };
 
     setCommentText = (e) => {
@@ -288,7 +289,7 @@ const userReply = (reply, key) => {
     return (
         <div className={reply.is_hidden ? 'answer_box hidden_block' : 'answer_box'} key={key}>
             {reply.is_hidden ? <p className="hidden_comment">{translate('hidden_comment')}</p> : ''}
-            <div dangerouslySetInnerHTML={{__html: reply.content}}/>
+            <div dangerouslySetInnerHTML={{__html: stripHtml(reply.content)}}/>
             <div className="their_name">
                 <span> {reply.full_name} </span>
                 <span className="comment_date">{reply.created_at}</span>
@@ -308,6 +309,16 @@ const userReply = (reply, key) => {
     )
 };
 
+let stripHtml = (html) => {
+    const code = {
+        '<' : '&lt;',
+        '>' : '&gt;',
+        '"' : '&quot;',
+        '&' : '&amp;',
+        '\'' : '&apos;'
+    };
+    return html.replace(/[\u00A0-\u9999<>\&''""]/gm, (i)=>code[i]);
+};
 
 class LikedBtn extends Component {
     render() {
