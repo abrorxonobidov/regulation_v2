@@ -31,6 +31,7 @@ export class SingleComment extends Component {
             isSupportProcessing: false
         };
         this.showNewReply = this.props.showNewReply.bind(this);
+        this.addNewNote = this.props.addNewNote.bind(this);
     }
 
     support = () => {
@@ -56,10 +57,10 @@ export class SingleComment extends Component {
                             comment: supportedComment,
                         });
                     } else {
-                        alertToUser(res.data['alertText']);
+                        this.addNewNote(res.data['alertText']);
                     }
                 } else {
-                    alertToUser(res.statusText)
+                    this.addNewNote(res.statusText)
                 }
                 this.setState({
                     isSupportProcessing: false
@@ -70,6 +71,7 @@ export class SingleComment extends Component {
                 this.setState({
                     isSupportProcessing: false
                 });
+                this.addNewNote('Error in connection', 'danger')
             });
     };
 
@@ -111,13 +113,13 @@ export class SingleComment extends Component {
 
                 <div className="like_btn">
                     {comment.is_supported ? <LikedBtn/> :
-                        <LikeBtn onClick={this.props.userId ? this.support : alertToUser('Auth needed..')}
+                        <LikeBtn onClick={this.props.userId ? this.support : this.addNewNote('Auth needed..')}
                                  isSupportProcessing={this.state.isSupportProcessing}/>}
                     <i>{comment.support_count}</i>
                 </div>
                 {comment.is_hidden ? '' :
                     <div className="add_comment">
-                        <AddCommentBtn onClick={this.props.userId ? this.handleReplyPoly : alertToUser('Auth needed')}/>
+                        <AddCommentBtn onClick={this.props.userId ? this.handleReplyPoly : this.addNewNote('Auth needed')}/>
                     </div>
                 }
 
@@ -126,7 +128,9 @@ export class SingleComment extends Component {
                 {
                     this.state.showReplyPoly ?
                         <ReplyPoly parentId={comment.id} userId={this.props.userId} docId={this.props.docId}
-                                   showNewReply={this.showNewReply} parentCommentKey={this.props.parentCommentKey}/>
+                                   showNewReply={this.showNewReply} parentCommentKey={this.props.parentCommentKey}
+                                   addNewNote={this.addNewNote}
+                        />
                         :
                         ''
                 }
@@ -148,7 +152,8 @@ class ReplyPoly extends Component {
             content: '',
             isReplyProcessing: false
         };
-        this.showNewReply = this.props.showNewReply.bind(this)
+        this.showNewReply = this.props.showNewReply.bind(this);
+        this.addNewNote = this.props.addNewNote.bind(this)
     }
 
     userId;
@@ -185,10 +190,10 @@ class ReplyPoly extends Component {
                         });
                         this.showNewReply(newReply);
                     } else {
-                        alertToUser(res.data['alertText'])
+                        this.addNewNote(res.data['alertText'], 'danger')
                     }
                 } else {
-                    alertToUser(res.statusText)
+                    this.addNewNote(res.statusText, 'danger')
                 }
             })
             .catch(error => {
@@ -196,7 +201,7 @@ class ReplyPoly extends Component {
                 this.setState({
                     isReplyProcessing: false
                 });
-                alertToUser('Error in connection')
+                this.addNewNote('Error in connection', 'danger')
             });
 
     };
@@ -361,7 +366,3 @@ class AddCommentBtn extends Component {
         )
     }
 }
-
-export let alertToUser = (params) => {
-    alert(params);
-};

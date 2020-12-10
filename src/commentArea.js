@@ -7,11 +7,12 @@
 import {translate} from './wordList';
 import {Component} from 'react';
 import React from 'react';
-import {SingleComment, alertToUser} from "./singleComment";
+import {SingleComment} from "./singleComment";
 import axios from 'axios';
 import Loader from 'react-loader-spinner';
 import {ApiUrl} from './params';
 import CKEditor from 'ckeditor4-react';
+import UserNotification from "./userNotification";
 
 
 let countComment = document.getElementById('count-comment').innerText;
@@ -32,7 +33,8 @@ export default class CommentArea extends Component {
             countComment: countComment,
             userSpec: this.props.userSpec,
             isNewCommentProcessing: false,
-            commentEditorInitText: false
+            commentEditorInitText: false,
+            notes: []
         };
     }
 
@@ -65,17 +67,17 @@ export default class CommentArea extends Component {
                         });
                         document.getElementById('count-comment').innerText = this.state.countComment;
                     } else {
-                        alertToUser('Izohlar mavjud emas');
+                        this.addNewNote('Izohlar mavjud emas');
                     }
                 } else {
-                    alertToUser(res.status + res.statusText)
+                    this.addNewNote(res.status + res.statusText)
                 }
             })
             .catch(error => {
                 this.setState({
                     isCommentListProcessing: false
                 });
-                alertToUser('Error in connection');
+                this.addNewNote('Error in connection', 'danger');
                 console.log(error);
             });
 
@@ -92,7 +94,10 @@ export default class CommentArea extends Component {
 
     sendComment = (params) => {
 
-        if (params.content.length > 0) {
+        if (params.content.length <= 0) {
+            this.addNewNote(translate('text_here'));
+            return false
+        }
             this.setState({
                 isNewCommentProcessing: true
             });
@@ -131,10 +136,10 @@ export default class CommentArea extends Component {
                                 countComment: this.state.comments.length
                             });
                         } else {
-                            alertToUser(res.data['alertText'])
+                            this.addNewNote(res.data['alertText'])
                         }
                     } else {
-                        alertToUser(res.statusText)
+                        this.addNewNote(res.statusText)
                     }
                 })
                 .catch(error => {
@@ -142,12 +147,8 @@ export default class CommentArea extends Component {
                     this.setState({
                         isNewCommentProcessing: false
                     });
-                    alertToUser('Error in connection')
+                    this.addNewNote('Error in connection', 'danger')
                 });
-
-        } else {
-            alert(translate('text_here'))
-        }
 
 
     };
@@ -155,6 +156,24 @@ export default class CommentArea extends Component {
     componentDidMount() {
         this.getCommentList()
     }
+
+    addNewNote = (text,  type = 'success')=> {
+        let notes = this.state.notes;
+        notes.push({
+            text: text,
+            type: type
+        });
+        this.setState({
+            notes: notes
+        });
+        console.log(this.state.notes)
+    };
+
+    clearNotes = () => {
+        this.setState({
+            notes: []
+        })
+    };
 
     render() {
 
@@ -178,7 +197,9 @@ export default class CommentArea extends Component {
                                     (comment, key) =>
                                         <SingleComment comment={comment} key={key} userId={this.props.userId}
                                                        docId={this.props.docId}
-                                                       parentCommentKey={key} showNewReply={this.showNewReply}/>
+                                                       parentCommentKey={key} showNewReply={this.showNewReply}
+                                                       addNewNote={this.addNewNote}
+                                        />
                                 ) : ''
                         }
                     </div>
@@ -192,6 +213,12 @@ export default class CommentArea extends Component {
                             /> : ''
                     }
                 </div>
+
+
+
+                <UserNotification notes={this.state.notes} clearNotes={this.clearNotes} />
+
+
             </>
         )
     }
@@ -405,7 +432,6 @@ class CommentEditor extends Component {
                         </button>
                     </div>
                 </div>
-
             </>
         )
     }
