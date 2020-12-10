@@ -78,11 +78,6 @@ const WordList = {
         uz: 'Юклаб олиш',
         oz: 'Yuklab olish'
     },
-    asos: {
-        ru: 'Обоснование',
-        uz: 'Асос',
-        oz: 'Asos'
-    },
     text_here: {
         ru: 'Введите текст',
         uz: 'Матнни киритинг',

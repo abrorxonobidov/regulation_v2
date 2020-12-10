@@ -9,6 +9,7 @@ import {translate} from "./wordList";
 import {LikedBtnSvg, LikeBtnSvg, DownloadBtnSvg} from "./img/svgList"
 import {hostname, currentLang, ApiUrl} from "./params";
 import axios from "axios";
+import Loader from 'react-loader-spinner';
 
 
 let authorityTitle = document.getElementById('authority-title').innerText;
@@ -26,12 +27,17 @@ export class SingleComment extends Component {
         super(props);
         this.state = {
             comment: this.props.comment,
-            showReplyPoly: false
+            showReplyPoly: false,
+            isSupportProcessing: false
         };
         this.showNewReply = this.props.showNewReply.bind(this);
     }
 
     support = () => {
+
+        this.setState({
+            isSupportProcessing: true
+        });
 
         let data = new FormData();
         data.append('user_id', this.props.userId);
@@ -55,9 +61,15 @@ export class SingleComment extends Component {
                 } else {
                     alertToUser(res.statusText)
                 }
+                this.setState({
+                    isSupportProcessing: false
+                });
             })
             .catch(error => {
                 console.log(error);
+                this.setState({
+                    isSupportProcessing: false
+                });
             });
     };
 
@@ -77,7 +89,7 @@ export class SingleComment extends Component {
         let body;
         let comment = this.state.comment;
 
-        if (comment.is_hidden === true) {
+        if (comment.is_hidden) {
             body = <HiddenCommentBody content={comment.content} reason={comment.reason_to_hide}/>
         } else if (comment.is_applied) {
             body = <AcceptedCommentBody content={comment.content}/>
@@ -99,25 +111,29 @@ export class SingleComment extends Component {
 
                 <div className="like_btn">
                     {comment.is_supported ? <LikedBtn/> :
-                        <LikeBtn onClick={this.props.userId ? this.support : alertToUser('Auth needed..')}/>}
+                        <LikeBtn onClick={this.props.userId ? this.support : alertToUser('Auth needed..')}
+                                 isSupportProcessing={this.state.isSupportProcessing}/>}
                     <i>{comment.support_count}</i>
                 </div>
-                <div className="add_comment">
-                    <AddCommentBtn onClick={this.props.userId ? this.handleReplyPoly : alertToUser('Auth needed')}/>
-                </div>
+                {comment.is_hidden ? '' :
+                    <div className="add_comment">
+                        <AddCommentBtn onClick={this.props.userId ? this.handleReplyPoly : alertToUser('Auth needed')}/>
+                    </div>
+                }
 
                 {comment.file ? <DownloadBtn id={comment.id} d={comment.document_id} file={comment.file}/> : ''}
 
                 {
                     this.state.showReplyPoly ?
-                    <ReplyPoly parentId={comment.id} userId={this.props.userId} docId={this.props.docId} showNewReply={this.showNewReply} parentCommentKey={this.props.parentCommentKey}/>
-                    :
-                    ''
+                        <ReplyPoly parentId={comment.id} userId={this.props.userId} docId={this.props.docId}
+                                   showNewReply={this.showNewReply} parentCommentKey={this.props.parentCommentKey}/>
+                        :
+                        ''
                 }
 
                 {comment.authority_answers.map((answer, key) => AuthorityAnswer(answer, key))}
 
-                {comment.user_answers.map((reply, key) => UserReply(reply, key))}
+                {comment.user_answers.map((reply, key) => userReply(reply, key))}
             </div>
         )
     }
@@ -129,7 +145,8 @@ class ReplyPoly extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            content: ''
+            content: '',
+            isReplyProcessing: false
         };
         this.showNewReply = this.props.showNewReply.bind(this)
     }
@@ -141,6 +158,9 @@ class ReplyPoly extends Component {
     sendReply = () => {
         if (this.state.content.length > 0) {
 
+            this.setState({
+                isReplyProcessing: true
+            });
             let data = new FormData();
             data.append('user_id', this.props.userId);
             data.append('parent_id', this.props.parentId);
@@ -156,7 +176,8 @@ class ReplyPoly extends Component {
                             newReply.parentCommentKey = this.props.parentCommentKey;
                             newReply.parentId = this.props.parentId;
                             this.setState({
-                                content: ''
+                                content: '',
+                                isReplyProcessing: false
                             });
                             this.showNewReply(newReply);
                         } else {
@@ -168,6 +189,9 @@ class ReplyPoly extends Component {
                 })
                 .catch(error => {
                     console.log(error);
+                    this.setState({
+                        isReplyProcessing: false
+                    });
                     alertToUser('Error in connection')
                 });
 
@@ -184,10 +208,17 @@ class ReplyPoly extends Component {
 
     render() {
         return (
-            <div>
-                <textarea value={this.state.content} placeholder={translate('text_here') + '...'} onChange={this.setCommentText}/>
-                <button type="button" className="blue_link pull-right" onClick={this.sendReply}>
-                    {translate('reply_btn_text')}
+            <div className="reply-poly">
+                <textarea value={this.state.content} placeholder={translate('text_here') + ' ...'}
+                          onChange={this.setCommentText}/>
+                <button type="button" className="blue_link" onClick={this.sendReply}
+                        disabled={this.state.isReplyProcessing}>
+                    {
+                        this.state.isReplyProcessing ?
+                            <Loader type="Oval" color="white" radius={18} height={24} width={24}/>
+                            :
+                            translate('reply_btn_text')
+                    }
                 </button>
             </div>
         )
@@ -214,7 +245,7 @@ export class HiddenCommentBody extends Component {
                     <span>{authorityTitle}</span>
                 </div>
                 <div className="reason_to_hide"
-                     dangerouslySetInnerHTML={{__html: '<b>' + translate('asos') + ': </b>' + this.props.reason}}/>
+                     dangerouslySetInnerHTML={{__html: this.props.reason ? '<b>' + translate('hidden_description') + ': </b>' + this.props.reason : ''}}/>
             </div>
         )
     }
@@ -253,7 +284,7 @@ const AuthorityAnswer = (answer, key) => {
 };
 
 
-const UserReply = (reply, key) => {
+const userReply = (reply, key) => {
     return (
         <div className={reply.is_hidden ? 'answer_box hidden_block' : 'answer_box'} key={key}>
             {reply.is_hidden ? <p className="hidden_comment">{translate('hidden_comment')}</p> : ''}
@@ -268,10 +299,9 @@ const UserReply = (reply, key) => {
                         <div className="their_name">
                             <span>{authorityTitle}</span>
                         </div>
-                        <div className="reason_to_hide">
-                            <b>{translate('hidden_description')}: </b>
-                            {reply.reason_to_hide}
-                        </div>
+                        <div className="reason_to_hide"
+                             dangerouslySetInnerHTML={{__html: reply.reason_to_hide ? '<b>' + translate('hidden_description') + ': </b>' + reply.reason_to_hide : ''}}
+                        ></div>
                     </> : ''
             }
         </div>
@@ -289,7 +319,15 @@ class LikedBtn extends Component {
 class LikeBtn extends Component {
     render() {
         return (
-            <button onClick={this.props.onClick}>{LikeBtnSvg}</button>
+            <button onClick={this.props.onClick}>
+                {
+                    this.props.isSupportProcessing ?
+                        <Loader type="Oval" width={15} height={15} radius={12} color="#05439d"
+                                className='like-btn-loader'/>
+                        :
+                        LikeBtnSvg
+                }
+            </button>
         )
     }
 }

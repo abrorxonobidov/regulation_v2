@@ -104,6 +104,7 @@
     margin-top: 25px;
     float: right;
     height: 34px;
+    width: 150px;
 }
 
 .correspondence .blue_link.disabled {
@@ -145,6 +146,36 @@
 .favourite-loader {
     font-size: 24px;
     color: #fff;
+}
+
+.leave-comment-btn {
+    outline: none !important;
+    border: none !important;
+    margin: 25px 0 50px 25px;
+    border-radius: 18px;
+    background-color: #05439d;
+    padding: 5px 25px;
+    color: #ffffff !important;
+    float: right;
+    height: 34px;
+    line-height: 1.8;
+    min-width: 150px;
+}
+
+.reply-poly {
+    margin: 0 60px;
+}
+.reply-poly textarea {
+    resize: vertical;
+}
+.like-btn-loader {
+    padding: 5px 5px 0 0;
+}
+
+@media screen and (max-width: 700px) {
+    .reply-poly {
+        margin: 0 15px 0 0;
+    }
 }
 
 @keyframes spin {
