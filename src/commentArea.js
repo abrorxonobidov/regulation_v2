@@ -10,12 +10,12 @@ import React from 'react';
 import {SingleComment} from "./singleComment";
 import axios from 'axios';
 import Loader from 'react-loader-spinner';
-import {ApiUrl} from './params';
+import {ApiUrl, staticUserSpecList, userFileConfig} from './params';
 import CKEditor from 'ckeditor4-react';
 import UserNotification from "./userNotification";
 
 
-let countComment = document.getElementById('count-comment').innerText;
+let initialCountComment = document.getElementById('count-comment').innerText;
 
 
 export default class CommentArea extends Component {
@@ -30,7 +30,7 @@ export default class CommentArea extends Component {
             comments: [],
             isCommentListProcessing: false,
             isCommentListShown: false,
-            countComment: countComment,
+            countComment: initialCountComment,
             userSpec: this.props.userSpec,
             isNewCommentProcessing: false,
             commentEditorInitText: false,
@@ -98,57 +98,57 @@ export default class CommentArea extends Component {
             this.addNewNote(translate('text_here'));
             return false
         }
-            this.setState({
-                isNewCommentProcessing: true
-            });
-            let comment = new FormData();
-            comment.append('content', params.content);
-            comment.append('user_id', this.props.userId);
-            comment.append('document_id', this.props.docId);
-            comment.append('u_s_i', params.userSpec);
-            comment.append('c_f_i', params.file);
+        this.setState({
+            isNewCommentProcessing: true
+        });
+        let comment = new FormData();
+        comment.append('content', params.content);
+        comment.append('user_id', this.props.userId);
+        comment.append('document_id', this.props.docId);
+        comment.append('u_s_i', params.userSpec);
+        comment.append('c_f_i', params.file);
 
-            axios.post(ApiUrl('send-comment'), comment)
-                .then(res => {
-                    if (res.status === 200 && res.statusText === 'OK') {
-                        if (res.data && res.data.status) {
-                            let newComment = res.data.data;
-                            newComment.content = params.content;
-                            newComment.document_id = this.props.docId;
-                            newComment.entity_id = this.props.docId;
-                            newComment.parent_id = null;
-                            newComment.authority = null;
-                            newComment.is_anonymous = false;
-                            newComment.is_applied = false;
-                            newComment.is_answered = false;
-                            newComment.support_count = 0;
-                            newComment.is_hidden = false;
-                            newComment.reason_to_hide = null;
-                            newComment.is_supported = false;
-                            newComment.authority_answers = [];
-                            newComment.user_answers = [];
-                            let allComments = this.state.comments;
-                            allComments.push(newComment);
-                            this.setState({
-                                comments: allComments,
-                                isNewCommentProcessing: false,
-                                commentEditorInitText: !this.state.commentEditorInitText,
-                                countComment: this.state.comments.length
-                            });
-                        } else {
-                            this.addNewNote(res.data['alertText'])
-                        }
+        axios.post(ApiUrl('send-comment'), comment)
+            .then(res => {
+                if (res.status === 200 && res.statusText === 'OK') {
+                    if (res.data && res.data.status) {
+                        let newComment = res.data.data;
+                        newComment.content = params.content;
+                        newComment.document_id = this.props.docId;
+                        newComment.entity_id = this.props.docId;
+                        newComment.parent_id = null;
+                        newComment.authority = null;
+                        newComment.is_anonymous = false;
+                        newComment.is_applied = false;
+                        newComment.is_answered = false;
+                        newComment.support_count = 0;
+                        newComment.is_hidden = false;
+                        newComment.reason_to_hide = null;
+                        newComment.is_supported = false;
+                        newComment.authority_answers = [];
+                        newComment.user_answers = [];
+                        let allComments = this.state.comments;
+                        allComments.push(newComment);
+                        this.setState({
+                            comments: allComments,
+                            isNewCommentProcessing: false,
+                            commentEditorInitText: !this.state.commentEditorInitText,
+                            countComment: this.state.comments.length
+                        });
                     } else {
-                        this.addNewNote(res.statusText)
+                        this.addNewNote(res.data['alertText'])
                     }
-                })
-                .catch(error => {
-                    console.log(error);
-                    this.setState({
-                        isNewCommentProcessing: false
-                    });
-                    this.addNewNote('Error in connection', 'danger')
+                } else {
+                    this.addNewNote(res.statusText)
+                }
+            })
+            .catch(error => {
+                console.log(error);
+                this.setState({
+                    isNewCommentProcessing: false
                 });
+                this.addNewNote('Error in connection', 'danger')
+            });
 
 
     };
@@ -157,7 +157,7 @@ export default class CommentArea extends Component {
         this.getCommentList()
     }
 
-    addNewNote = (text,  type = 'success')=> {
+    addNewNote = (text, type = 'success') => {
         let notes = this.state.notes;
         notes.push({
             text: text,
@@ -213,12 +213,7 @@ export default class CommentArea extends Component {
                             /> : ''
                     }
                 </div>
-
-
-
-                <UserNotification notes={this.state.notes} clearNotes={this.clearNotes} />
-
-
+                <UserNotification notes={this.state.notes} clearNotes={this.clearNotes}/>
             </>
         )
     }
@@ -264,16 +259,12 @@ class CommentEditor extends Component {
             userSpec: this.props.userSpec,
             file: null,
             fileSummaryText: null,
-            fileSummaryClass: null
+            fileSummaryClass: null,
+            userSpecList: staticUserSpecList,
+            isSpecListProcessing: false
         };
         this.sendComment = this.props.sendComment.bind(this)
     }
-
-    config = {
-        allowedExtensions: ['doc', 'docx', 'pdf'],
-        maxFileSize: 20971520, //bytes
-        minFileSize: 1024 //bytes
-    };
 
 
     chooseFile = (e) => {
@@ -299,15 +290,15 @@ class CommentEditor extends Component {
                 return false
             }
 
-            if (!this.config.allowedExtensions.includes(extension.toLowerCase())) {
+            if (!userFileConfig.allowedExtensions.includes(extension.toLowerCase())) {
                 this.setState({
-                    fileSummaryText: '<b>' + this.config.allowedExtensions.join(', ') + '</b> fayllar ruxsat etilgan',
+                    fileSummaryText: '<b>' + userFileConfig.allowedExtensions.join(', ') + '</b> fayllar ruxsat etilgan',
                     fileSummaryClass: 'text-danger'
                 });
                 return false
             }
 
-            if (file.size < this.config.minFileSize || file.size > this.config.maxFileSize) {
+            if (file.size < userFileConfig.minFileSize || file.size > userFileConfig.maxFileSize) {
                 this.setState({
                     fileSummaryText: translate('incompatibleFileSize'),
                     fileSummaryClass: 'text-danger'
@@ -334,11 +325,52 @@ class CommentEditor extends Component {
         document.getElementById('comment-file').value = null;
     };
 
+
     selectUserSpec = (e) => {
         this.setState({
             userSpec: e.target.value
         })
     };
+
+
+    getSpecList = () => {
+        this.setState({
+            isSpecListProcessing: true
+        });
+        axios.post(ApiUrl('spec-list'))
+            .then(res => {
+
+                console.log(res);
+                if (res.status === 200 && res.statusText === 'OK') {
+                    if (res.data && res.data.status) {
+                        this.setState({
+                            userSpecList: res.data.list,
+                            isSpecListProcessing: false
+                        });
+                    } else {
+                        this.addNewNote('An error occurred', 'danger')
+                    }
+                } else {
+                    this.addNewNote(res.statusText)
+                }
+                this.setState({
+                    isSpecListProcessing: false
+                });
+            })
+            .catch(error => {
+                console.log(error);
+                this.setState({
+                    isSpecListProcessing: false
+                });
+                this.addNewNote('Error in connection', 'danger')
+            });
+    };
+
+
+    componentDidMount() {
+        this.getSpecList();
+    }
+
 
     render() {
         return (
@@ -406,15 +438,26 @@ class CommentEditor extends Component {
                             </label>
                             <select id="comment-spec" className="form-control" defaultValue={this.state.userSpec}
                                     onChange={this.selectUserSpec}
-                                    style={{borderRadius: 20}}>
-                                <option value="1">Тадбиркор - 1</option>
-                                <option value="2">Давлат хизматчиси - 2</option>
-                                <option value="3">Илмий изланувчи - 3</option>
-                                <option value="4">Мустақил изланувчи - 4</option>
-                                <option value="5">Журналист/блогер - 5</option>
-                                <option value="6">Халқаро ташкилот ҳодими - 6</option>
-                                <option value="7">Дастурчи - 7</option>
+                                    style={{borderRadius: 20}}
+                                    disabled={this.state.isSpecListProcessing}
+                            >
+                                {
+                                    this.state.isSpecListProcessing ?
+                                        <option>{translate('processing')} ...</option>
+                                        :
+                                        this.state.userSpecList.map((spec, key) => {
+                                            return <option value={spec.id} key={key}> {spec.title} </option>
+                                        })
+                                }
                             </select>
+                            <Loader type="ThreeDots" color="Green" height={20} width={60}
+                                    style={{
+                                        position: 'absolute',
+                                        top: '33px',
+                                        right: '45%'
+                                    }}
+                                    visible={this.state.isSpecListProcessing}
+                            />
                         </div>
                     </div>
                     <div className="col-md-offset-3 col-md-3">
@@ -435,4 +478,5 @@ class CommentEditor extends Component {
             </>
         )
     }
+
 }

@@ -107,7 +107,12 @@ const WordList = {
         ru: 'Размер файла должен быть больше <b>1 KB</b> и меньше <b>20 МБ</b>',
         uz: 'файл хажми <b>1 KB</b> дан катта ва <b>20 МБ</b> дан кичик бўлиши лозим',
         oz: 'Fayl hajmi <b>1 KB</b> dan katta va <b>20 МБ</b> dan kichik boʻlishi lozim'
-    }
+    },
+    processing: {
+        ru: 'Загрузка',
+        uz: 'Юкланмоқда',
+        oz: 'Yuklanmoqda'
+    },
 };
 
 
