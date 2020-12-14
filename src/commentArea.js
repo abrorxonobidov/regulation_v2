@@ -4,7 +4,7 @@
  */
 
 
-import {translate} from './wordList';
+import {translate, translateParams} from './wordList';
 import {Component} from 'react';
 import React from 'react';
 import {SingleComment} from "./singleComment";
@@ -67,7 +67,7 @@ export default class CommentArea extends Component {
                         });
                         document.getElementById('count-comment').innerText = this.state.countComment;
                     } else {
-                        this.addNewNote('Izohlar mavjud emas');
+                        this.addNewNote(translate('no_comment'));
                     }
                 } else {
                     this.addNewNote(res.status + res.statusText)
@@ -77,7 +77,7 @@ export default class CommentArea extends Component {
                 this.setState({
                     isCommentListProcessing: false
                 });
-                this.addNewNote('Error in connection', 'danger');
+                this.addNewNote(translate('errorInConnection'), 'danger');
                 console.log(error);
             });
 
@@ -147,7 +147,7 @@ export default class CommentArea extends Component {
                 this.setState({
                     isNewCommentProcessing: false
                 });
-                this.addNewNote('Error in connection', 'danger')
+                this.addNewNote(translate('errorInConnection'), 'danger')
             });
 
 
@@ -292,7 +292,7 @@ class CommentEditor extends Component {
 
             if (!userFileConfig.allowedExtensions.includes(extension.toLowerCase())) {
                 this.setState({
-                    fileSummaryText: '<b>' + userFileConfig.allowedExtensions.join(', ') + '</b> fayllar ruxsat etilgan',
+                    fileSummaryText: translateParams('allowedExtensions', {extensions: '<b>' + userFileConfig.allowedExtensions.join(', ') + '</b>'}),
                     fileSummaryClass: 'text-danger'
                 });
                 return false
@@ -339,8 +339,6 @@ class CommentEditor extends Component {
         });
         axios.post(ApiUrl('spec-list'))
             .then(res => {
-
-                console.log(res);
                 if (res.status === 200 && res.statusText === 'OK') {
                     if (res.data && res.data.status) {
                         this.setState({
@@ -348,7 +346,7 @@ class CommentEditor extends Component {
                             isSpecListProcessing: false
                         });
                     } else {
-                        this.addNewNote('An error occurred', 'danger')
+                        this.addNewNote(translate('errorInSystem'), 'danger')
                     }
                 } else {
                     this.addNewNote(res.statusText)
@@ -362,7 +360,7 @@ class CommentEditor extends Component {
                 this.setState({
                     isSpecListProcessing: false
                 });
-                this.addNewNote('Error in connection', 'danger')
+                this.addNewNote(translate('errorInConnection'), 'danger')
             });
     };
 
@@ -467,10 +465,10 @@ class CommentEditor extends Component {
                                     this.clearFile();
                                     this.sendComment(this.state)
                                 }}>
-                            {this.props.isNewCommentProcessing ?
-                                <Loader type="Oval" color="white" radius={18} height={24} width={24}/>
-                                :
-                                translate('leaveComment')
+                            {
+                                this.props.isNewCommentProcessing ?
+                                    <Loader type="Oval" color="white" radius={18} height={24} width={24}/>
+                                    : translate('leaveComment')
                             }
                         </button>
                     </div>

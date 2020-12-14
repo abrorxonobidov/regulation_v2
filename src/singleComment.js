@@ -71,7 +71,7 @@ export class SingleComment extends Component {
                 this.setState({
                     isSupportProcessing: false
                 });
-                this.addNewNote('Error in connection', 'danger')
+                this.addNewNote(translate('errorInConnection'), 'danger')
             });
     };
 
@@ -201,7 +201,7 @@ class ReplyPoly extends Component {
                 this.setState({
                     isReplyProcessing: false
                 });
-                this.addNewNote('Error in connection', 'danger')
+                this.addNewNote(translate('errorInConnection'), 'danger')
             });
 
     };

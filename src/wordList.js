@@ -7,7 +7,20 @@
 import {currentLang} from "./params";
 
 
-const WordList = {
+export let translate = (key) => wordList[key][currentLang];
+
+
+export let translateParams = (key, params) => {
+
+    let word = wordList[key][currentLang];
+
+    for (let paramName in params)
+        word = word.replace('{' + paramName + '}', params[paramName]);
+    return word;
+};
+
+
+const wordList = {
     offers: {
         ru: 'Предложения',
         uz: 'Таклифлар',
@@ -108,12 +121,25 @@ const WordList = {
         uz: 'файл хажми <b>1 KB</b> дан катта ва <b>20 МБ</b> дан кичик бўлиши лозим',
         oz: 'Fayl hajmi <b>1 KB</b> dan katta va <b>20 МБ</b> dan kichik boʻlishi lozim'
     },
+    allowedExtensions: {
+        ru: 'Разрешены только файлы {extensions}',
+        uz: 'Фақат {extensions} файллар рухсат этилган',
+        oz: 'Faqat {extensions} fayllar ruxsat etilgan'
+    },
     processing: {
         ru: 'Загрузка',
         uz: 'Юкланмоқда',
         oz: 'Yuklanmoqda'
     },
+    errorInConnection: {
+        ru: 'Ошибка сети',
+        uz: 'Тармоқда хатолик',
+        oz: 'Tarmoqda xatolik'
+    },
+    errorInSystem: {
+        ru: 'Системная ошибка',
+        uz: 'Тизим хатоси',
+        oz: 'Tizimda xatosi'
+    }
+
 };
-
-
-export let translate = (key) =>  WordList[key][currentLang];
