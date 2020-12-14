@@ -165,9 +165,11 @@
 .reply-poly {
     margin: 0 60px;
 }
+
 .reply-poly textarea {
     resize: vertical;
 }
+
 .like-btn-loader {
     padding: 5px 5px 0 0;
 }
@@ -507,8 +509,53 @@ a.desc:after {
 }
 
 #user-notifications .alert {
-margin-bottom: 5px;
-width: 300px;
-max-width: 90vw;
-padding: 10px;
+    margin-bottom: 5px;
+    width: 300px;
+    max-width: 90vw;
+    padding: 10px;
+}
+
+.comment-list-loader {
+    text-align: center;
+}
+
+.comment-list-loader li {
+    display: inline-block;
+}
+
+.hidden-divider-btn {
+    height: 0;
+    width: 100%;
+    border: none
+}
+
+.comment-file-label {
+    width: 100%
+}
+
+.comment-file-label > p {
+    background-color: #05439d;
+    padding: 8px;
+    width: 100%;
+    height: 34px;
+    border-radius: 17px;
+    text-align: center;
+    color: #ffffff;
+    margin-top: 5px
+}
+
+#comment-spec {
+    border-radius: 20px
+}
+
+.user-spec-loader {
+    position: absolute;
+    top: 33px;
+    right: 45%
+}
+
+.auth-needed-to-comment {
+    margin-bottom: 60px;
+    font-size: 20px;
+    text-align: center;
 }

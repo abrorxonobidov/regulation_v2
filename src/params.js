@@ -4,7 +4,7 @@
  */
 
 
-export let ApiUrl = (action) => hostname + '/' + currentLang + '/api/' + action;
+export let apiUrl = (action) => hostname + '/' + currentLang + '/api/' + action;
 
 
 export let hostname = window.location.hostname === 'localhost' ? 'http://regulation.track.uz/abrorxon/f_v2' : 'https://regulation.gov.uz';

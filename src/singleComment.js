@@ -7,7 +7,7 @@
 import React, {Component} from "react";
 import {translate} from "./wordList";
 import {LikedBtnSvg, LikeBtnSvg, DownloadBtnSvg} from "./img/svgList"
-import {hostname, currentLang, ApiUrl} from "./params";
+import {hostname, currentLang, apiUrl} from "./params";
 import axios from "axios";
 import Loader from 'react-loader-spinner';
 
@@ -46,7 +46,7 @@ export class SingleComment extends Component {
         data.append('comment_id', this.props.comment.id);
         data.append('paragraph_id', this.props.comment.document_id);
 
-        axios.post(ApiUrl('support-comment'), data)
+        axios.post(apiUrl('support-comment'), data)
             .then(res => {
                 if (res.status === 200 && res.statusText === 'OK') {
                     if (res.data && res.data.status) {
@@ -112,15 +112,20 @@ export class SingleComment extends Component {
                 {body}
 
                 <div className="like_btn">
-                    {comment.is_supported ? <LikedBtn/> :
-                        <LikeBtn onClick={this.props.userId ? this.support : this.addNewNote('Auth needed..')}
-                                 isSupportProcessing={this.state.isSupportProcessing}/>}
+                    {
+                        comment.is_supported ? <LikedBtn/> :
+                            <LikeBtn
+                                onClick={this.props.userId > 0 ? this.support : () => this.addNewNote(translate('authNeededToLike'))}
+                                isSupportProcessing={this.state.isSupportProcessing}/>
+                    }
                     <i>{comment.support_count}</i>
                 </div>
-                {comment.is_hidden ? '' :
-                    <div className="add_comment">
-                        <AddCommentBtn onClick={this.props.userId ? this.handleReplyPoly : this.addNewNote('Auth needed')}/>
-                    </div>
+                {
+                    comment.is_hidden ? '' :
+                        <div className="add_comment">
+                            <AddCommentBtn
+                                onClick={this.props.userId > 0 ? this.handleReplyPoly : () => this.addNewNote(translate('authNeededToComment'))}/>
+                        </div>
                 }
 
                 {comment.file ? <DownloadBtn id={comment.id} d={comment.document_id} file={comment.file}/> : ''}
@@ -130,9 +135,7 @@ export class SingleComment extends Component {
                         <ReplyPoly parentId={comment.id} userId={this.props.userId} docId={this.props.docId}
                                    showNewReply={this.showNewReply} parentCommentKey={this.props.parentCommentKey}
                                    addNewNote={this.addNewNote}
-                        />
-                        :
-                        ''
+                        /> : ''
                 }
 
                 {comment.authority_answers.map((answer, key) => AuthorityAnswer(answer, key))}
@@ -176,7 +179,7 @@ class ReplyPoly extends Component {
         data.append('document_id', this.props.docId);
         data.append('content', stripHtml(this.state.content));
 
-        axios.post(ApiUrl('send-comment'), data)
+        axios.post(apiUrl('send-comment'), data)
             .then(res => {
                 if (res.status === 200 && res.statusText === 'OK') {
                     if (res.data && res.data.status) {
@@ -316,13 +319,13 @@ const userReply = (reply, key) => {
 
 let stripHtml = (html) => {
     const code = {
-        '<' : '&lt;',
-        '>' : '&gt;',
-        '"' : '&quot;',
-        '&' : '&amp;',
-        '\'' : '&apos;'
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        '&': '&amp;',
+        '\'': '&apos;'
     };
-    return html.replace(/[\u00A0-\u9999<>\&''""]/gm, (i)=>code[i]);
+    return html.replace(/[\u00A0-\u9999<>\&''""]/gm, (i) => code[i]);
 };
 
 class LikedBtn extends Component {

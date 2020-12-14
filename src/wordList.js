@@ -7,15 +7,17 @@
 import {currentLang} from "./params";
 
 
-export let translate = (key) => wordList[key][currentLang];
+export let translate = (key) => {
+    return wordList[key] ? wordList[key][currentLang] : key
+};
 
 
 export let translateParams = (key, params) => {
-
+    if (!wordList[key]) return key;
     let word = wordList[key][currentLang];
-
     for (let paramName in params)
-        word = word.replace('{' + paramName + '}', params[paramName]);
+        if (params.hasOwnProperty(paramName))
+            word = word.replace('{' + paramName + '}', params[paramName]);
     return word;
 };
 
@@ -140,6 +142,16 @@ const wordList = {
         ru: 'Системная ошибка',
         uz: 'Тизим хатоси',
         oz: 'Tizimda xatosi'
+    },
+    authNeededToLike: {
+        ru: 'Вы должны быть <a href="#login-modal" data-toggle="modal">Авторизованы</a>, чтобы проголосовать',
+        uz: 'Овоз бериш учун <a href="#login-modal" data-toggle="modal">Авторизациядан ўтиш</a>ингиз лозим',
+        oz: 'Ovoz berish uchun <a href="#login-modal" data-toggle="modal">Avtorizatsiyadan oʻtish</a>ishingiz lozim'
+    },
+    authNeededToComment: {
+        ru: 'Вы должны быть <a href="#login-modal" data-toggle="modal">Авторизованы</a>, чтобы оставить предложение',
+        uz: 'Таклиф қолдириш учун <a href="#login-modal" data-toggle="modal">Авторизациядан ўтиш</a>ингиз лозим',
+        oz: 'Taklif qoldirish uchun <a href="#login-modal" data-toggle="modal">Avtorizatsiyadan oʻtish</a>ishingiz lozim'
     }
 
 };

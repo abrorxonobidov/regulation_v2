@@ -10,7 +10,7 @@ import React from 'react';
 import {SingleComment} from "./singleComment";
 import axios from 'axios';
 import Loader from 'react-loader-spinner';
-import {ApiUrl, staticUserSpecList, userFileConfig} from './params';
+import {apiUrl, staticUserSpecList, userFileConfig} from './params';
 import CKEditor from 'ckeditor4-react';
 import UserNotification from "./userNotification";
 
@@ -55,7 +55,7 @@ export default class CommentArea extends Component {
         data.append('doc_id', this.props.docId);
         data.append('user_id', this.props.userId);
 
-        axios.post(ApiUrl('get-comments'), data)
+        axios.post(apiUrl('get-comments'), data)
             .then(res => {
                 if (res.status === 200 && res.statusText === 'OK') {
                     if (res.data) {
@@ -108,7 +108,7 @@ export default class CommentArea extends Component {
         comment.append('u_s_i', params.userSpec);
         comment.append('c_f_i', params.file);
 
-        axios.post(ApiUrl('send-comment'), comment)
+        axios.post(apiUrl('send-comment'), comment)
             .then(res => {
                 if (res.status === 200 && res.statusText === 'OK') {
                     if (res.data && res.data.status) {
@@ -187,10 +187,9 @@ export default class CommentArea extends Component {
                     </button>
                     <div className="clearfix"></div>
                 </div>
-                <Loaders show={this.state.isCommentListProcessing}/>
+                {this.state.isCommentListProcessing ? <CommentLoader/> : ''}
                 <div className="correspondence">
-                    <div className="correspondence_list"
-                         style={{display: this.state.isCommentListShown ? 'block' : 'none'}}>
+                    <div className="correspondence_list">
                         {
                             this.state.isCommentListShown ?
                                 this.state.comments.map(
@@ -210,6 +209,7 @@ export default class CommentArea extends Component {
                                 sendComment={this.sendComment}
                                 initText={this.state.commentEditorInitText}
                                 isNewCommentProcessing={this.state.isNewCommentProcessing}
+                                userId={this.props.userId}
                             /> : ''
                     }
                 </div>
@@ -221,23 +221,20 @@ export default class CommentArea extends Component {
 }
 
 
-class Loaders extends Component {
+class CommentLoader extends Component {
     render() {
         return (
-            <ul style={{
-                display: this.props.show ? 'block' : 'none ',
-                textAlign: 'center'
-            }}>
-                <li style={{display: 'inline-block'}}>
+            <ul className="comment-list-loader">
+                <li>
                     <Loader type="BallTriangle" color="#05439d" height={60} width={70}/>
                 </li>
-                <li style={{display: 'inline-block'}}>
+                <li>
                     <Loader type="BallTriangle" color="#05439d" height={60} width={70}/>
                 </li>
-                <li style={{display: 'inline-block'}}>
+                <li>
                     <Loader type="BallTriangle" color="#05439d" height={60} width={70}/>
                 </li>
-                <li style={{display: 'inline-block'}}>
+                <li>
                     <Loader type="BallTriangle" color="#05439d" height={60} width={70}/>
                 </li>
             </ul>
@@ -251,6 +248,7 @@ class CommentEditor extends Component {
     initText;
     isNewCommentProcessing;
     userSpec;
+    userId;
 
     constructor(props) {
         super(props);
@@ -337,7 +335,7 @@ class CommentEditor extends Component {
         this.setState({
             isSpecListProcessing: true
         });
-        axios.post(ApiUrl('spec-list'))
+        axios.post(apiUrl('spec-list'))
             .then(res => {
                 if (res.status === 200 && res.statusText === 'OK') {
                     if (res.data && res.data.status) {
@@ -373,106 +371,104 @@ class CommentEditor extends Component {
     render() {
         return (
             <>
-                <button style={{height: 0, width: '100%', border: 'none'}}></button>
-                <CKEditor
-                    data={this.props.initText}
-                    config={
-                        {
-                            toolbar: [
-                                ['Bold', 'Italic', 'Underline'],
-                                ['RemoveFormat']
-                            ],
-                            language: 'ru',
-                            removeButtons: '',
-                            editorPlaceholder: translate('text_here')
-                        }
-                    }
-                    onChange={e => this.setState({
-                        content: e.editor.getData().trim()
-                    })}
-                />
-                <br/>
-                <div className="row">
-                    <div className="col-md-3 col-sm-6">
-                        <div className="form-group">
-                            <label htmlFor="comment-file" style={{width: '100%'}}>
-                                {translate('chooseFile')}
-                                <p style={{
-                                    backgroundColor: '#05439d',
-                                    padding: 8,
-                                    width: '100%',
-                                    height: 34,
-                                    borderRadius: 17,
-                                    textAlign: 'center',
-                                    color: '#ffffff',
-                                    marginTop: 5
-                                }}>
-                                    {translate('chooseFile')} <i className="glyphicon glyphicon-folder-open"></i>
-                                </p>
-                            </label>
-                            <div className="row">
-                                <div className="col-md-9">
-                                    <p className={this.state.fileSummaryClass}
-                                       dangerouslySetInnerHTML={{__html: this.state.fileSummaryText}}/>
-                                </div>
-                                <div className="col-md-3">
+                <button className="hidden-divider-btn"></button>
+                {
+                    this.props.userId ?
+                        <>
+                            <CKEditor
+                                data={this.props.initText}
+                                config={
                                     {
-                                        this.state.fileSummaryText ?
-                                            <button className='btn btn-default pull-right btn-sm'
-                                                    onClick={this.clearFile}>
-                                                <i className="text-danger glyphicon glyphicon-remove"></i>
-                                            </button>
-                                            : ''
+                                        toolbar: [
+                                            ['Bold', 'Italic', 'Underline'],
+                                            ['RemoveFormat']
+                                        ],
+                                        language: 'ru',
+                                        removeButtons: '',
+                                        editorPlaceholder: translate('text_here')
                                     }
+                                }
+                                onChange={e => this.setState({
+                                    content: e.editor.getData().trim()
+                                })}
+                            />
+                            <br/>
+                            <div className="row">
+                                <div className="col-md-3 col-sm-6">
+                                    <div className="form-group">
+                                        <label htmlFor="comment-file" className="comment-file-label">
+                                            {translate('chooseFile')}
+                                            <p>
+                                                {translate('chooseFile')} <i
+                                                className="glyphicon glyphicon-folder-open"></i>
+                                            </p>
+                                        </label>
+                                        <div className="row">
+                                            <div className="col-md-9">
+                                                <p className={this.state.fileSummaryClass}
+                                                   dangerouslySetInnerHTML={{__html: this.state.fileSummaryText}}/>
+                                            </div>
+                                            <div className="col-md-3">
+                                                {
+                                                    this.state.fileSummaryText ?
+                                                        <button className='btn btn-default pull-right btn-sm'
+                                                                onClick={this.clearFile}>
+                                                            <i className="text-danger glyphicon glyphicon-remove"></i>
+                                                        </button>
+                                                        : ''
+                                                }
+                                            </div>
+                                        </div>
+                                        <input type="file" id="comment-file" className="hidden"
+                                               onChange={this.chooseFile}/>
+                                    </div>
+                                </div>
+                                <div className="col-md-3 col-sm-6">
+                                    <div className="form-group">
+                                        <label htmlFor="comment-spec">
+                                            {translate('chooseSpec')}
+                                        </label>
+                                        <select id="comment-spec" className="form-control"
+                                                defaultValue={this.state.userSpec}
+                                                onChange={this.selectUserSpec}
+                                                disabled={this.state.isSpecListProcessing}
+                                        >
+                                            {
+                                                this.state.isSpecListProcessing ?
+                                                    <option>{translate('processing')} ...</option>
+                                                    :
+                                                    this.state.userSpecList.map((spec, key) => {
+                                                        return <option value={spec.id} key={key}> {spec.title} </option>
+                                                    })
+                                            }
+                                        </select>
+                                        <Loader type="ThreeDots" color="Green" height={20} width={60}
+                                                className="user-spec-loader"
+                                                visible={this.state.isSpecListProcessing}
+                                        />
+                                    </div>
+                                </div>
+                                <div className="col-md-offset-3 col-md-3">
+                                    <button className="leave-comment-btn col-md-8 col-sm-4 col-xs-3"
+                                            disabled={this.props.isNewCommentProcessing}
+                                            onClick={() => {
+                                                this.clearFile();
+                                                this.sendComment(this.state)
+                                            }}>
+                                        {
+                                            this.props.isNewCommentProcessing ?
+                                                <Loader type="Oval" color="white" radius={18} height={24} width={24}/>
+                                                : translate('leaveComment')
+                                        }
+                                    </button>
                                 </div>
                             </div>
-                            <input type="file" id="comment-file" className="hidden" onChange={this.chooseFile}/>
+                        </>
+                        :
+                        <div className="alert alert-success auth-needed-to-comment"
+                             dangerouslySetInnerHTML={{__html: translate('authNeededToComment')}}>
                         </div>
-                    </div>
-                    <div className="col-md-3 col-sm-6">
-                        <div className="form-group">
-                            <label htmlFor="comment-spec">
-                                {translate('chooseSpec')}
-                            </label>
-                            <select id="comment-spec" className="form-control" defaultValue={this.state.userSpec}
-                                    onChange={this.selectUserSpec}
-                                    style={{borderRadius: 20}}
-                                    disabled={this.state.isSpecListProcessing}
-                            >
-                                {
-                                    this.state.isSpecListProcessing ?
-                                        <option>{translate('processing')} ...</option>
-                                        :
-                                        this.state.userSpecList.map((spec, key) => {
-                                            return <option value={spec.id} key={key}> {spec.title} </option>
-                                        })
-                                }
-                            </select>
-                            <Loader type="ThreeDots" color="Green" height={20} width={60}
-                                    style={{
-                                        position: 'absolute',
-                                        top: '33px',
-                                        right: '45%'
-                                    }}
-                                    visible={this.state.isSpecListProcessing}
-                            />
-                        </div>
-                    </div>
-                    <div className="col-md-offset-3 col-md-3">
-                        <button className="leave-comment-btn col-md-8 col-sm-4 col-xs-3"
-                                disabled={this.props.isNewCommentProcessing}
-                                onClick={() => {
-                                    this.clearFile();
-                                    this.sendComment(this.state)
-                                }}>
-                            {
-                                this.props.isNewCommentProcessing ?
-                                    <Loader type="Oval" color="white" radius={18} height={24} width={24}/>
-                                    : translate('leaveComment')
-                            }
-                        </button>
-                    </div>
-                </div>
+                }
             </>
         )
     }
