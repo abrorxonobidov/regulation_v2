@@ -7,7 +7,7 @@
 export let apiUrl = (action) => hostname + '/' + currentLang + '/api/' + action;
 
 
-export let hostname = window.location.hostname === 'localhost' ? 'http://regulation.track.uz/abrorxon/f_v2' : 'https://regulation.gov.uz';
+export let hostname = (window.location.hostname === 'regulation.gov.uz') ? 'https://regulation.gov.uz' : 'http://regulation.track.uz/abrorxon/f_v2';
 
 
 export const currentLang = document.getElementById('html').getAttribute('lang') || 'uz';

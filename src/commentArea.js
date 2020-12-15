@@ -13,6 +13,7 @@ import Loader from 'react-loader-spinner';
 import {apiUrl, staticUserSpecList, userFileConfig} from './params';
 import CKEditor from 'ckeditor4-react';
 import UserNotification from "./userNotification";
+import {consoleLog} from "./functions";
 
 
 let initialCountComment = document.getElementById('count-comment').innerText;
@@ -78,7 +79,7 @@ export default class CommentArea extends Component {
                     isCommentListProcessing: false
                 });
                 this.addNewNote(translate('errorInConnection'), 'danger');
-                console.log(error);
+                consoleLog(error);
             });
 
 
@@ -143,7 +144,7 @@ export default class CommentArea extends Component {
                 }
             })
             .catch(error => {
-                console.log(error);
+                consoleLog(error);
                 this.setState({
                     isNewCommentProcessing: false
                 });
@@ -153,9 +154,9 @@ export default class CommentArea extends Component {
 
     };
 
-    componentDidMount() {
+    /*componentDidMount() {
         this.getCommentList()
-    }
+    }*/
 
     addNewNote = (text, type = 'success') => {
         let notes = this.state.notes;
@@ -166,7 +167,6 @@ export default class CommentArea extends Component {
         this.setState({
             notes: notes
         });
-        console.log(this.state.notes)
     };
 
     clearNotes = () => {
@@ -354,7 +354,7 @@ class CommentEditor extends Component {
                 });
             })
             .catch(error => {
-                console.log(error);
+                consoleLog(error);
                 this.setState({
                     isSpecListProcessing: false
                 });
@@ -429,7 +429,6 @@ class CommentEditor extends Component {
                                             {translate('chooseSpec')}
                                         </label>
                                         <select id="comment-spec" className="form-control"
-                                                defaultValue={this.state.userSpec}
                                                 onChange={this.selectUserSpec}
                                                 disabled={this.state.isSpecListProcessing}
                                         >
@@ -438,7 +437,14 @@ class CommentEditor extends Component {
                                                     <option>{translate('processing')} ...</option>
                                                     :
                                                     this.state.userSpecList.map((spec, key) => {
-                                                        return <option value={spec.id} key={key}> {spec.title} </option>
+                                                        return (
+                                                            <option
+                                                                value={spec.id}
+                                                                key={key}
+                                                                selected={this.state.userSpec === spec.id.toString() ? 'selected':''}>
+                                                                {spec.title}
+                                                            </option>
+                                                        )
                                                     })
                                             }
                                         </select>

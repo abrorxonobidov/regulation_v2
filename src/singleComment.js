@@ -10,6 +10,7 @@ import {LikedBtnSvg, LikeBtnSvg, DownloadBtnSvg} from "./img/svgList"
 import {hostname, currentLang, apiUrl} from "./params";
 import axios from "axios";
 import Loader from 'react-loader-spinner';
+import {consoleLog} from "./functions";
 
 
 let authorityTitle = document.getElementById('authority-title').innerText;
@@ -67,7 +68,7 @@ export class SingleComment extends Component {
                 });
             })
             .catch(error => {
-                console.log(error);
+                consoleLog(error);
                 this.setState({
                     isSupportProcessing: false
                 });
@@ -75,9 +76,6 @@ export class SingleComment extends Component {
             });
     };
 
-    modal = () => {
-        alert('Auth needed. Show auth modal');
-    };
 
     handleReplyPoly = () => {
         this.setState({
@@ -200,7 +198,7 @@ class ReplyPoly extends Component {
                 }
             })
             .catch(error => {
-                console.log(error);
+                consoleLog(error);
                 this.setState({
                     isReplyProcessing: false
                 });
