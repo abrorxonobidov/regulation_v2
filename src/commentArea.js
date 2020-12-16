@@ -191,30 +191,42 @@ export default class CommentArea extends Component {
                 </div>
                 {this.state.isCommentListProcessing ? <CommentLoader/> : ''}
                 <div className="correspondence">
-                    <div className="correspondence_list">
-                        {
-                            this.state.isCommentListShown ?
-                                this.state.comments.map(
-                                    (comment, key) =>
-                                        <SingleComment comment={comment} key={key} userId={this.props.userId}
-                                                       docId={this.props.docId}
-                                                       parentCommentKey={key} showNewReply={this.showNewReply}
-                                                       addNewNote={this.addNewNote}
-                                                       isDiscussing={this.props.isDiscussing}
-                                        />
-                                ) : ''
-                        }
-                    </div>
                     {
-                        this.state.isCommentListShown ?
-                            <CommentEditor
-                                userSpec={this.state.userSpec}
-                                sendComment={this.sendComment}
-                                initText={this.state.commentEditorInitText}
-                                isNewCommentProcessing={this.state.isNewCommentProcessing}
-                                userId={this.props.userId}
-                                isDiscussing={this.props.isDiscussing}
-                            /> : ''
+                        !this.state.isCommentListShown ? '' :
+                            <>
+                                {
+                                    this.state.comments.length ?
+                                        <div className="correspondence_list">
+                                            {
+                                                this.state.comments.map(
+                                                    (comment, key) =>
+                                                        <SingleComment comment={comment} key={key}
+                                                                       userId={this.props.userId}
+                                                                       docId={this.props.docId}
+                                                                       parentCommentKey={key}
+                                                                       showNewReply={this.showNewReply}
+                                                                       addNewNote={this.addNewNote}
+                                                                       isDiscussing={this.props.isDiscussing}
+                                                        />
+                                                )
+                                            }
+                                        </div>
+                                        :
+                                        <div className="alert alert-success auth-needed-to-comment"
+                                             dangerouslySetInnerHTML={{__html: translate('no_comment')}}>
+                                        </div>
+                                }
+                                {
+                                    this.props.isDiscussing === null ? '' :
+                                        <CommentEditor
+                                            userSpec={this.state.userSpec}
+                                            sendComment={this.sendComment}
+                                            initText={this.state.commentEditorInitText}
+                                            isNewCommentProcessing={this.state.isNewCommentProcessing}
+                                            userId={this.props.userId}
+                                        />
+                                }
+                            </>
                     }
                 </div>
                 <UserNotification notes={this.state.notes} clearNotes={this.clearNotes}/>
@@ -253,7 +265,6 @@ class CommentEditor extends Component {
     isNewCommentProcessing;
     userSpec;
     userId;
-    isDiscussing;
 
     constructor(props) {
         super(props);
@@ -377,14 +388,13 @@ class CommentEditor extends Component {
 
 
     componentDidMount() {
-        if (this.props.userId && this.props.isDiscussing !== null)
+        if (this.props.userId)
             this.getSpecList();
     }
 
 
     render() {
         return (
-            this.props.isDiscussing === null ? '' :
             <>
                 <button className="hidden-divider-btn"></button>
                 {
@@ -456,7 +466,7 @@ class CommentEditor extends Component {
                                                             <option
                                                                 value={spec.id}
                                                                 key={key}
-                                                                selected={this.state.userSpec === spec.id.toString() ? 'selected':''}>
+                                                                selected={this.state.userSpec === spec.id.toString() ? 'selected' : ''}>
                                                                 {spec.title}
                                                             </option>
                                                         )
