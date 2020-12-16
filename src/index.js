@@ -17,6 +17,7 @@ ReactDOM.render(
         <CommentArea
             userId={rootTag.getAttribute('data-user-id')}
             userSpec={rootTag.getAttribute('data-user-spec')}
+            isDiscussing={rootTag.getAttribute('data-is-discussing')}
             docId={rootTag.getAttribute('data-doc-id')}/>,
     rootTag
 );

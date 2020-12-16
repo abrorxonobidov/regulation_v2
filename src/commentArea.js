@@ -24,6 +24,7 @@ export default class CommentArea extends Component {
     docId;
     userId;
     userSpec;
+    isDiscussing;
 
     constructor(props) {
         super(props);
@@ -32,7 +33,7 @@ export default class CommentArea extends Component {
             isCommentListProcessing: false,
             isCommentListShown: false,
             countComment: initialCountComment,
-            userSpec: this.props.userSpec,
+            userSpec: this.props.userSpec ? this.props.userSpec : 1,
             isNewCommentProcessing: false,
             commentEditorInitText: false,
             notes: []
@@ -136,6 +137,7 @@ export default class CommentArea extends Component {
                             commentEditorInitText: !this.state.commentEditorInitText,
                             countComment: this.state.comments.length
                         });
+                        document.getElementById('count-comment').innerText = this.state.countComment;
                     } else {
                         this.addNewNote(res.data['alertText'])
                     }
@@ -198,6 +200,7 @@ export default class CommentArea extends Component {
                                                        docId={this.props.docId}
                                                        parentCommentKey={key} showNewReply={this.showNewReply}
                                                        addNewNote={this.addNewNote}
+                                                       isDiscussing={this.props.isDiscussing}
                                         />
                                 ) : ''
                         }
@@ -210,6 +213,7 @@ export default class CommentArea extends Component {
                                 initText={this.state.commentEditorInitText}
                                 isNewCommentProcessing={this.state.isNewCommentProcessing}
                                 userId={this.props.userId}
+                                isDiscussing={this.props.isDiscussing}
                             /> : ''
                     }
                 </div>
@@ -249,6 +253,7 @@ class CommentEditor extends Component {
     isNewCommentProcessing;
     userSpec;
     userId;
+    isDiscussing;
 
     constructor(props) {
         super(props);
@@ -332,23 +337,31 @@ class CommentEditor extends Component {
 
 
     getSpecList = () => {
+
+        let userSpecListSession = sessionStorage.getItem('userSpecList');
+
+        if (userSpecListSession) {
+            this.setState({
+                userSpecList: JSON.parse(userSpecListSession)
+            });
+            return true
+        }
+
         this.setState({
             isSpecListProcessing: true
         });
         axios.post(apiUrl('spec-list'))
             .then(res => {
-                if (res.status === 200 && res.statusText === 'OK') {
+                if (res.status === 200 && res.statusText === 'OK')
                     if (res.data && res.data.status) {
                         this.setState({
-                            userSpecList: res.data.list,
-                            isSpecListProcessing: false
+                            userSpecList: res.data.list
                         });
-                    } else {
-                        this.addNewNote(translate('errorInSystem'), 'danger')
-                    }
-                } else {
-                    this.addNewNote(res.statusText)
-                }
+                        sessionStorage.setItem('userSpecList', JSON.stringify(res.data.list))
+                    } else
+                        this.addNewNote(translate('errorInSystem'), 'danger');
+                else
+                    this.addNewNote(res.statusText);
                 this.setState({
                     isSpecListProcessing: false
                 });
@@ -364,12 +377,14 @@ class CommentEditor extends Component {
 
 
     componentDidMount() {
-        this.getSpecList();
+        if (this.props.userId && this.props.isDiscussing !== null)
+            this.getSpecList();
     }
 
 
     render() {
         return (
+            this.props.isDiscussing === null ? '' :
             <>
                 <button className="hidden-divider-btn"></button>
                 {

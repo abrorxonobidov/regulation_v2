@@ -23,6 +23,7 @@ export class SingleComment extends Component {
     userId;
     docId;
     parentCommentKey;
+    isDiscussing;
 
     constructor(props) {
         super(props);
@@ -119,7 +120,7 @@ export class SingleComment extends Component {
                     <i>{comment.support_count}</i>
                 </div>
                 {
-                    comment.is_hidden ? '' :
+                    (this.props.isDiscussing === null || comment.is_hidden) ? '' :
                         <div className="add_comment">
                             <AddCommentBtn
                                 onClick={this.props.userId > 0 ? this.handleReplyPoly : () => this.addNewNote(translate('authNeededToComment'))}/>
